@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>結映 YUEI | 心を動かす瞬間を、映像で未来へつなぐ。</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   結映 YUEI — Design tokens
+   UIは無彩色(黒・白・ベージュ・グレー)/ 青・緑は「映像素材」側で表現
+   ※ .scene はすべて動画・写真の差し替え前提のプレースホルダー
+============================================================ */
+:root{
+  --ink:#1b1b19;
+  --ink-soft:#3a3936;
+  --paper:#f5f3ee;
+  --beige:#eae5db;
+  --gray:#8b8880;
+  --line:rgba(27,27,25,.16);
+  --line-light:rgba(245,243,238,.25);
+  --mincho:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
+  --serif-en:"Cormorant Garamond",Georgia,serif;
+  --sans:"Helvetica Neue",Helvetica,Arial,"Hiragino Kaku Gothic ProN",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--mincho);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:2;
+  letter-spacing:.06em;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ---------- 共通パーツ ---------- */
+.eyebrow{
+  font-family:var(--sans);
+  font-size:.68rem;
+  font-weight:300;
+  letter-spacing:.42em;
+  color:var(--gray);
+  text-transform:uppercase;
+}
+.heading{
+  font-size:clamp(1.6rem,3.2vw,2.6rem);
+  font-weight:500;
+  line-height:1.85;
+  letter-spacing:.1em;
+  margin-top:1.6rem;
+}
+.lead{
+  font-size:clamp(.85rem,1.1vw,.95rem);
+  line-height:2.4;
+  color:var(--ink-soft);
+  margin-top:2.4rem;
+  max-width:34em;
+}
+.more{
+  display:inline-flex;align-items:center;gap:1.2rem;
+  margin-top:3rem;
+  font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.35em;font-weight:300;
+  color:var(--ink);
+  position:relative;
+}
+.more .arrow{
+  display:inline-block;width:56px;height:1px;background:var(--ink);
+  position:relative;transition:width .5s ease;
+}
+.more .arrow::after{
+  content:"";position:absolute;right:0;top:-3px;
+  width:9px;height:1px;background:var(--ink);
+  transform:rotate(32deg);transform-origin:right center;
+}
+.more:hover .arrow{width:80px}
+
+/* ---------- scene = 動画/写真プレースホルダー ---------- */
+.scene{position:relative;overflow:hidden;background:#0c1c22}
+.scene::after{ /* 微細なフィルムグレイン */
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.scene>.layer{position:absolute;inset:-8%;}
+/* 海の空撮 */
+.sc-aerial .layer{background:
+  radial-gradient(120% 90% at 78% 18%, #7ecfc3 0%, transparent 46%),
+  radial-gradient(90% 110% at 18% 88%, #0a3a44 0%, transparent 60%),
+  linear-gradient(158deg,#123c46 0%, #17606b 34%, #2c98a0 62%, #6cc6bd 88%);
+}
+/* 夕景 */
+.sc-dusk .layer{background:
+  radial-gradient(70% 55% at 68% 40%, #f0c58a 0%, transparent 52%),
+  radial-gradient(110% 90% at 30% 100%, #1d2a35 0%, transparent 65%),
+  linear-gradient(180deg,#3c4a63 0%, #7d6a72 42%, #caa084 66%, #52565f 100%);
+}
+/* 森・山あい(関東の緑) */
+.sc-forest .layer{background:
+  radial-gradient(90% 70% at 22% 20%, #b8cdb2 0%, transparent 48%),
+  radial-gradient(100% 90% at 80% 92%, #17301f 0%, transparent 62%),
+  linear-gradient(150deg,#22402c 0%, #3a5e40 45%, #7c9a72 80%, #a9bd9c 100%);
+}
+/* 湖・朝霧 */
+.sc-lake .layer{background:
+  radial-gradient(100% 60% at 50% 10%, #e7ebe8 0%, transparent 55%),
+  linear-gradient(180deg,#c8d3d1 0%, #93a8a8 40%, #4e6a6d 78%, #2c4246 100%);
+}
+/* 客室・室内光 */
+.sc-room .layer{background:
+  radial-gradient(80% 70% at 76% 30%, #efe4cf 0%, transparent 55%),
+  radial-gradient(90% 90% at 12% 90%, #4c4237 0%, transparent 60%),
+  linear-gradient(160deg,#6b5d4c 0%, #a8967d 48%, #d9cbb2 100%);
+}
+/* 水中 */
+.sc-under .layer{background:
+  radial-gradient(80% 60% at 50% 0%, #4fb3c9 0%, transparent 55%),
+  linear-gradient(180deg,#1a7d97 0%, #0e4c66 55%, #072a3d 100%);
+}
+/* 光の帯(水面のきらめき) */
+.scene .light{
+  position:absolute;inset:-20%;
+  background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.14) 50%,transparent 58%);
+  animation:lightdrift 14s ease-in-out infinite alternate;
+}
+@keyframes lightdrift{from{transform:translateX(-6%) }to{transform:translateX(6%)}}
+.scene .layer{animation:kenburns 26s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.08) translateY(-1.5%)}}
+
+/* ---------- Nav ---------- */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:2rem 3.4rem;
+  transition:background .6s ease, padding .6s ease;
+}
+header.solid{background:rgba(245,243,238,.92);backdrop-filter:blur(8px);padding:1.1rem 3.4rem;border-bottom:1px solid var(--line)}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo .ja{font-size:1.5rem;font-weight:500;letter-spacing:.3em}
+.logo .en{font-family:var(--sans);font-size:.52rem;letter-spacing:.55em;margin-top:.45rem;font-weight:300}
+header,header a{color:#fff;transition:color .6s ease}
+header.solid,header.solid a{color:var(--ink)}
+nav ul{display:flex;gap:2.6rem;list-style:none}
+nav a{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;font-weight:300;position:relative;padding-bottom:.3rem}
+nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s ease}
+nav a:hover::after{width:100%}
+
+/* ---------- Hero ---------- */
+.hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:center}
+.hero .scene{position:absolute;inset:0}
+.hero .veil{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,20,26,.55) 0%,rgba(8,20,26,.15) 55%,transparent 80%)}
+.hero-inner{position:relative;z-index:2;color:#fff;padding:0 3.4rem;max-width:1280px;margin:0 auto;width:100%}
+.hero h1{
+  font-size:clamp(1.9rem,4.4vw,3.6rem);
+  font-weight:500;line-height:1.9;letter-spacing:.12em;
+  text-shadow:0 2px 30px rgba(0,20,30,.35);
+}
+.hero .sub{
+  margin-top:2.2rem;font-size:clamp(.8rem,1.1vw,.95rem);
+  line-height:2.4;letter-spacing:.14em;color:rgba(255,255,255,.92);
+}
+.hero h1 .line{display:block;opacity:0;transform:translateY(1.4em);animation:rise 1.6s cubic-bezier(.19,1,.22,1) forwards}
+.hero h1 .line:nth-child(2){animation-delay:.35s}
+.hero .sub{opacity:0;animation:fade 2s ease .9s forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes fade{to{opacity:1}}
+.scroll-cue{
+  position:absolute;left:3.4rem;bottom:3rem;z-index:2;color:#fff;
+  font-family:var(--sans);font-size:.62rem;letter-spacing:.4em;font-weight:300;
+  display:flex;align-items:center;gap:1.4rem;
+}
+.scroll-cue .bar{width:1px;height:64px;background:rgba(255,255,255,.5);overflow:hidden;position:relative}
+.scroll-cue .bar::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:#fff;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%{top:-100%}60%{top:100%}100%{top:100%}}
+.scroll-cue{writing-mode:vertical-rl}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1.3s cubic-bezier(.19,1,.22,1),transform 1.3s cubic-bezier(.19,1,.22,1)}
+.rv.in{opacity:1;transform:none}
+.rv-d1{transition-delay:.15s}.rv-d2{transition-delay:.3s}.rv-d3{transition-delay:.45s}
+
+/* ---------- Concept ---------- */
+.concept{padding:11rem 3.4rem;max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:center}
+.concept .frame{aspect-ratio:4/3}
+.concept .frame .scene{position:absolute;inset:0}
+.frame{position:relative;overflow:hidden}
+.frame .scene{height:100%}
+
+/* ---------- 言葉のインタールード(lea-lea的な"入ってくる言葉") ---------- */
+.interlude{
+  padding:12rem 2rem;text-align:center;position:relative;
+}
+.interlude p{
+  font-size:clamp(1.3rem,2.6vw,2.1rem);
+  font-weight:500;letter-spacing:.22em;line-height:2.2;
+}
+.interlude .en{
+  font-family:var(--serif-en);font-style:italic;font-weight:300;
+  font-size:clamp(.85rem,1.2vw,1rem);letter-spacing:.2em;
+  color:var(--gray);margin-top:2rem;display:block;
+}
+.interlude--dark{background:var(--ink);color:var(--paper)}
+.interlude--dark .en{color:rgba(245,243,238,.5)}
+
+/* ---------- Works(黒背景・流れるリール) ---------- */
+.works{background:var(--ink);color:var(--paper);padding:10rem 0 11rem;overflow:hidden}
+.works-head{max-width:1280px;margin:0 auto 5rem;padding:0 3.4rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem}
+.works-head .eyebrow{color:rgba(245,243,238,.5)}
+.works .more{color:var(--paper)}
+.works .more .arrow{background:var(--paper)}
+.works .more .arrow::after{background:var(--paper)}
+.reel{display:flex;gap:2.2rem;width:max-content;animation:reel 46s linear infinite}
+.reel:hover{animation-play-state:paused}
+@keyframes reel{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.card{width:min(320px,72vw);flex-shrink:0}
+.card .frame{aspect-ratio:3/4}
+.card .frame .scene{position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
+.card:hover .frame .scene{transform:scale(1.05)}
+.card figcaption{margin-top:1.3rem;font-family:var(--sans);font-weight:300;font-size:.68rem;letter-spacing:.28em;line-height:2;color:rgba(245,243,238,.85)}
+.card figcaption span{display:block;font-size:.6rem;color:rgba(245,243,238,.45)}
+
+/* ---------- Service ---------- */
+.service{padding:11rem 3.4rem;max-width:1280px;margin:0 auto}
+.service-grid{
+  margin-top:5rem;display:grid;
+  grid-template-columns:repeat(3,1fr);gap:3.5rem 2.6rem;
+}
+.svc .frame{aspect-ratio:16/11}
+.svc .frame .scene{position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
+.svc:hover .frame .scene{transform:scale(1.05)}
+.svc h3{
+  margin-top:1.5rem;font-size:.95rem;font-weight:500;letter-spacing:.16em;
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--line);padding-bottom:1.1rem;
+}
+.svc h3 .no{font-family:var(--serif-en);font-style:italic;font-weight:300;font-size:.8rem;color:var(--gray)}
+.svc p{margin-top:1rem;font-size:.78rem;line-height:2.2;color:var(--ink-soft)}
+
+/* ---------- About ---------- */
+.about{position:relative;color:#fff}
+.about .scene{position:absolute;inset:0}
+.about .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,22,.72) 0%,rgba(10,18,22,.35) 60%,rgba(10,18,22,.15) 100%)}
+.about-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:11rem 3.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:end}
+.about .eyebrow{color:rgba(255,255,255,.55)}
+.about .lead{color:rgba(255,255,255,.9)}
+.about .more{color:#fff}
+.about .more .arrow{background:#fff}.about .more .arrow::after{background:#fff}
+.about .quote{
+  font-size:clamp(1rem,1.7vw,1.35rem);font-weight:500;
+  letter-spacing:.14em;line-height:2.3;text-align:right;
+  text-shadow:0 2px 24px rgba(0,10,16,.4);
+}
+
+/* ---------- CTA ---------- */
+.cta{display:grid;grid-template-columns:1.15fr 1fr;min-height:70vh}
+.cta .visual{position:relative}
+.cta .visual .scene{position:absolute;inset:0}
+.cta .visual .veil{position:absolute;inset:0;background:rgba(8,20,26,.35)}
+.cta .visual .copy{
+  position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:center;
+  padding:4rem;color:#fff;
+}
+.cta .visual h2{font-size:clamp(1.4rem,2.4vw,2rem);font-weight:500;line-height:2;letter-spacing:.14em;text-shadow:0 2px 24px rgba(0,10,16,.4)}
+.cta .visual p{margin-top:2rem;font-size:.85rem;line-height:2.4;color:rgba(255,255,255,.92)}
+.cta .panel{background:var(--beige);display:flex;flex-direction:column;justify-content:center;padding:5rem 4.5rem}
+.cta .panel h2{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:500;letter-spacing:.14em;margin-top:1.6rem}
+.cta .panel p{margin-top:2rem;font-size:.82rem;line-height:2.4;color:var(--ink-soft)}
+.btn{
+  margin-top:3rem;display:inline-flex;justify-content:space-between;align-items:center;
+  background:var(--ink);color:var(--paper);
+  padding:1.4rem 2.2rem;max-width:320px;
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.35em;font-weight:300;
+  transition:opacity .4s ease;
+}
+.btn:hover{opacity:.82}
+.btn .arrow{width:44px;height:1px;background:var(--paper);position:relative}
+.btn .arrow::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:1px;background:var(--paper);transform:rotate(32deg);transform-origin:right center}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
+.foot-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1.3fr;gap:5rem;align-items:start}
+.foot-logo .ja{font-size:2rem;font-weight:500;letter-spacing:.3em}
+.foot-logo .en{font-family:var(--sans);font-size:.55rem;letter-spacing:.55em;margin-top:.6rem;font-weight:300;color:rgba(245,243,238,.6)}
+.foot-nav{list-style:none;display:flex;flex-direction:column;gap:1rem;border-left:1px solid var(--line-light);padding-left:3rem}
+.foot-nav a{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
+.foot-nav a:hover{color:#fff}
+.foot-info{font-size:.75rem;line-height:2.4;color:rgba(245,243,238,.75);font-family:var(--sans);font-weight:300;letter-spacing:.1em}
+.foot-info strong{font-family:var(--mincho);font-weight:500;font-size:.85rem;letter-spacing:.2em;color:var(--paper)}
+.copyright{max-width:1280px;margin:5rem auto 0;padding-top:2rem;border-top:1px solid var(--line-light);
+  font-family:var(--serif-en);font-size:.7rem;letter-spacing:.18em;color:rgba(245,243,238,.45);text-align:center}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  header{padding:1.4rem 1.6rem}
+  header.solid{padding:1rem 1.6rem}
+  nav{display:none}
+  .hero-inner{padding:0 1.6rem}
+  .scroll-cue{left:1.6rem}
+  .concept{grid-template-columns:1fr;padding:7rem 1.6rem;gap:4rem}
+  .service{padding:7rem 1.6rem}
+  .service-grid{grid-template-columns:1fr 1fr;gap:3rem 1.6rem}
+  .works{padding:7rem 0 8rem}
+  .works-head{padding:0 1.6rem;margin-bottom:3.5rem}
+  .about-inner{grid-template-columns:1fr;padding:7rem 1.6rem;gap:3rem}
+  .about .quote{text-align:left}
+  .cta{grid-template-columns:1fr}
+  .cta .visual{min-height:60vh}
+  .cta .panel{padding:4rem 1.6rem}
+  .foot-grid{grid-template-columns:1fr;gap:3rem}
+  .foot-nav{border-left:none;padding-left:0;flex-direction:row;flex-wrap:wrap;gap:1.4rem}
+  footer{padding:4.5rem 1.6rem 2.5rem}
+}
+@media (max-width:600px){
+  .service-grid{grid-template-columns:1fr}
+  .interlude{padding:8rem 1.6rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <a class="logo" href="#top">
+    <span class="ja">結映</span>
+    <span class="en">YUEI</span>
+  </a>
+  <nav>
+    <ul>
+      <li><a href="#top">TOP</a></li>
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#service">SERVICE</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<!-- .scene は全画面動画に差し替え(<video autoplay muted loop playsinline>) -->
+<section class="hero" id="top">
+  <div class="scene sc-aerial" data-parallax>
+    <div class="layer"></div>
+    <div class="light"></div>
+  </div>
+  <div class="veil"></div>
+  <div class="hero-inner">
+    <h1>
+      <span class="line">心を動かす瞬間を、</span>
+      <span class="line">映像で未来へつなぐ。</span>
+    </h1>
+    <p class="sub">人や場所の魅力を映像で伝え、<br>誰かの「行ってみたい」をつくる。</p>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="bar"></span></div>
+</section>
+
+<!-- ================= CONCEPT ================= -->
+<section class="concept" id="concept">
+  <div>
+    <p class="eyebrow rv">Concept</p>
+    <h2 class="heading rv rv-d1">その魅力を、<br>もっと伝わるカタチに。</h2>
+    <p class="lead rv rv-d2">
+      人は、心を動かされた瞬間を誰かと共有したくなる。<br>
+      だから結映は、その「心を動かす瞬間」を映像で生み出す会社。<br><br>
+      私たちは、映像の美しさだけでなく、<br>
+      その先にある成果にこだわるクリエイティブパートナー。<br>
+      お客様の広報支援部として、魅力が伝わるまで伴走します。
+    </p>
+    <a class="more rv rv-d3" href="#"><span>VIEW MORE</span><span class="arrow"></span></a>
+  </div>
+  <div class="frame rv rv-d1">
+    <div class="scene sc-dusk"><div class="layer"></div><div class="light"></div></div>
+  </div>
+</section>
+
+<!-- ================= INTERLUDE(言葉) ================= -->
+<section class="interlude">
+  <p class="rv">映像は、まだ見ぬ景色への招待状。</p>
+  <span class="en rv rv-d1">— A film is an invitation to a place you haven't seen.</span>
+</section>
+
+<!-- ================= WORKS ================= -->
+<section class="works" id="works">
+  <div class="works-head">
+    <div>
+      <p class="eyebrow rv">Works</p>
+      <h2 class="heading rv rv-d1">制作事例</h2>
+    </div>
+    <a class="more rv rv-d2" href="#"><span>VIEW ALL</span><span class="arrow"></span></a>
+  </div>
+  <!-- 流れるリール:hoverで一時停止 / 実装時はサムネイル動画に差し替え -->
+  <div class="reel" aria-label="制作事例一覧">
+    <!-- set 1 -->
+    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
+      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
+      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
+      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
+      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
+    <!-- set 2(ループ用複製) -->
+    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
+      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
+      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
+      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
+      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= SERVICE ================= -->
+<section class="service" id="service">
+  <p class="eyebrow rv">Service</p>
+  <h2 class="heading rv rv-d1">サービス</h2>
+  <p class="lead rv rv-d2">映像をつくることが目的ではなく、<br>魅力を伝え、成果につなげることが私たちの仕事です。</p>
+  <div class="service-grid">
+    <a class="svc rv" href="#"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div></div></div>
+      <h3>ドローン映像<span class="no">01</span></h3>
+      <p>空からの視点で、施設と土地の魅力をダイナミックに切り取ります。</p></a>
+    <a class="svc rv rv-d1" href="#"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
+      <h3>映像制作<span class="no">02</span></h3>
+      <p>企画から撮影・編集まで。目的に合わせた一本を仕上げます。</p></a>
+    <a class="svc rv rv-d2" href="#"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
+      <h3>SNSショート動画<span class="no">03</span></h3>
+      <p>数秒で心をつかむ縦型動画で、予約と来訪のきっかけをつくります。</p></a>
+    <a class="svc rv" href="#"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
+      <h3>写真撮影<span class="no">04</span></h3>
+      <p>客室・料理・ロケーション。予約サイトやHPで使える一枚を。</p></a>
+    <a class="svc rv rv-d1" href="#"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
+      <h3>SNS運用サポート<span class="no">05</span></h3>
+      <p>撮って終わりにしない。発信まで含めた広報の伴走支援。</p></a>
+    <a class="svc rv rv-d2" href="#"><div class="frame"><div class="scene sc-under"><div class="layer"></div></div></div>
+      <h3>宿泊者向けドローン映像サービス<span class="no">06</span></h3>
+      <p>滞在の思い出を映像に。宿の付加価値になる体験型サービス。</p></a>
+  </div>
+</section>
+
+<!-- ================= INTERLUDE(言葉・黒) ================= -->
+<section class="interlude interlude--dark">
+  <p class="rv">「行ってみたい」は、つくれる。</p>
+  <span class="en rv rv-d1">— We craft the moment people decide to go.</span>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="scene sc-forest" data-parallax><div class="layer"></div><div class="light"></div></div>
+  <div class="veil"></div>
+  <div class="about-inner">
+    <div>
+      <p class="eyebrow rv">About Us</p>
+      <h2 class="heading rv rv-d1" style="color:#fff">私たちについて</h2>
+      <p class="lead rv rv-d2">
+        訪問営業で培った「相手の課題を解決する力」と<br>
+        「結果にこだわる姿勢」を、映像づくりに活かしています。<br><br>
+        まだ小さな会社ですが、一件一件に真剣に向き合い、<br>
+        信頼と実績を積み重ねていきます。
+      </p>
+      <a class="more rv rv-d3" href="#"><span>VIEW MORE</span><span class="arrow"></span></a>
+    </div>
+    <p class="quote rv rv-d2">「こんな映像が欲しかった」<br>その一言のために、全力で向き合います。</p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
+  <div class="visual">
+    <div class="scene sc-dusk"><div class="layer"></div><div class="light"></div></div>
+    <div class="veil"></div>
+    <div class="copy">
+      <p class="eyebrow rv" style="color:rgba(255,255,255,.6)">Message</p>
+      <h2 class="rv rv-d1">困ったときに、<br>まず相談したくなる存在へ。</h2>
+      <p class="rv rv-d2">お客様の広報支援部として、<br>一緒に魅力を伝え、成果をつくります。</p>
+    </div>
+  </div>
+  <div class="panel">
+    <p class="eyebrow rv">Contact</p>
+    <h2 class="rv rv-d1">ご相談・お問い合わせ</h2>
+    <p class="rv rv-d2">映像制作のご相談やお見積もりなど、<br>お気軽にお問い合わせください。</p>
+    <a class="btn rv rv-d3" href="#"><span>CONTACT US</span><span class="arrow"></span></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="foot-grid">
+    <a class="foot-logo" href="#top">
+      <span class="ja">結映</span><br>
+      <span class="en">YUEI</span>
+    </a>
+    <ul class="foot-nav">
+      <li><a href="#top">TOP</a></li>
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#service">SERVICE</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <div class="foot-info">
+      <strong>株式会社 結映(ユウエイ)</strong><br>
+      〒000-0000 東京都○○区○○ 0-0-0(住所はダミーです)<br>
+      TEL:000-0000-0000<br>
+      MAIL:info@yuei.jp
+    </div>
+  </div>
+  <p class="copyright">&copy; YUEI Inc. All Rights Reserved.</p>
+</footer>
+
+<script>
+// ---------- スクロール連動:ヘッダー ----------
+const header=document.getElementById('header');
+const onScrollHeader=()=>{header.classList.toggle('solid',window.scrollY>window.innerHeight*0.75)};
+window.addEventListener('scroll',onScrollHeader,{passive:true});
+onScrollHeader();
+
+// ---------- フェードイン(IntersectionObserver) ----------
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// ---------- パララックス(控えめ) ----------
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduced){
+  const targets=[...document.querySelectorAll('[data-parallax]')];
+  let ticking=false;
+  const parallax=()=>{
+    targets.forEach(t=>{
+      const r=t.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      const p=(r.top+r.height/2-innerHeight/2)/innerHeight; // -0.5〜0.5程度
+      t.style.transform=`translateY(${p*-40}px)`;
+    });
+    ticking=false;
+  };
+  window.addEventListener('scroll',()=>{
+    if(!ticking){requestAnimationFrame(parallax);ticking=true}
+  },{passive:true});
+  parallax();
+}
+</script>
+</body>
+</html>
