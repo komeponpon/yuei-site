@@ -157,7 +157,8 @@ body.nav-open header,body.nav-open header a,body.nav-open header button{color:va
 .primary-nav > ul{
   display:flex;align-items:center;gap:1.8rem;list-style:none;
 }
-.nav-item{display:flex;align-items:center;gap:.15rem;position:relative}
+.has-sub{position:relative}
+.nav-item{display:flex;align-items:center;gap:.15rem}
 .primary-nav .nav-link{
   font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;font-weight:300;
   position:relative;padding:.4rem 0;background:none;border:none;cursor:pointer;
@@ -177,8 +178,8 @@ body.nav-open header,body.nav-open header a,body.nav-open header button{color:va
 .has-sub.is-open > .nav-item > .sub-toggle svg{transform:rotate(180deg)}
 .sub-nav{
   list-style:none;
-  position:absolute;top:calc(100% + .8rem);left:50%;transform:translateX(-50%);
-  min-width:11.5rem;padding:1rem 0;
+  position:absolute;top:calc(100% + .55rem);left:0;
+  min-width:12rem;padding:.7rem 0;
   background:rgba(245,243,238,.97);backdrop-filter:blur(10px);
   border:1px solid var(--line);
   opacity:0;visibility:hidden;pointer-events:none;
