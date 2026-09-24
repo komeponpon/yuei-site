@@ -81,62 +81,55 @@ a{color:inherit;text-decoration:none}
   transform:rotate(32deg);transform-origin:right center;
 }
 .more:hover .arrow{width:80px}
-.section-block{padding:11rem 3.4rem;max-width:1280px;margin:0 auto}
-.section-block--narrow{max-width:720px}
-.section-block--dark{background:var(--ink);color:var(--paper);max-width:none;padding:11rem 3.4rem}
-.section-block--dark .eyebrow{color:rgba(245,243,238,.5)}
-.section-block--dark .lead{color:rgba(245,243,238,.85)}
-.section-block--beige{background:var(--beige);max-width:none;padding:11rem 3.4rem}
-.section-block--beige .inner{max-width:1280px;margin:0 auto}
-.placeholder-note{
-  margin-top:2rem;padding:2.4rem 2rem;
-  border:1px dashed var(--line);
-  font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;
-  color:var(--gray);line-height:2;
-}
-.section-block--dark .placeholder-note{border-color:var(--line-light);color:rgba(245,243,238,.55)}
 
 /* ---------- scene = 動画/写真プレースホルダー ---------- */
 .scene{position:relative;overflow:hidden;background:#0c1c22}
-.scene::after{
+.scene::after{ /* 微細なフィルムグレイン */
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .scene>.layer{position:absolute;inset:-8%;}
+/* 海の空撮 */
 .sc-aerial .layer{background:
   radial-gradient(120% 90% at 78% 18%, #7ecfc3 0%, transparent 46%),
   radial-gradient(90% 110% at 18% 88%, #0a3a44 0%, transparent 60%),
   linear-gradient(158deg,#123c46 0%, #17606b 34%, #2c98a0 62%, #6cc6bd 88%);
 }
+/* 夕景 */
 .sc-dusk .layer{background:
   radial-gradient(70% 55% at 68% 40%, #f0c58a 0%, transparent 52%),
   radial-gradient(110% 90% at 30% 100%, #1d2a35 0%, transparent 65%),
   linear-gradient(180deg,#3c4a63 0%, #7d6a72 42%, #caa084 66%, #52565f 100%);
 }
+/* 森・山あい(関東の緑) */
 .sc-forest .layer{background:
   radial-gradient(90% 70% at 22% 20%, #b8cdb2 0%, transparent 48%),
   radial-gradient(100% 90% at 80% 92%, #17301f 0%, transparent 62%),
   linear-gradient(150deg,#22402c 0%, #3a5e40 45%, #7c9a72 80%, #a9bd9c 100%);
 }
+/* 湖・朝霧 */
 .sc-lake .layer{background:
   radial-gradient(100% 60% at 50% 10%, #e7ebe8 0%, transparent 55%),
   linear-gradient(180deg,#c8d3d1 0%, #93a8a8 40%, #4e6a6d 78%, #2c4246 100%);
 }
+/* 客室・室内光 */
 .sc-room .layer{background:
   radial-gradient(80% 70% at 76% 30%, #efe4cf 0%, transparent 55%),
   radial-gradient(90% 90% at 12% 90%, #4c4237 0%, transparent 60%),
   linear-gradient(160deg,#6b5d4c 0%, #a8967d 48%, #d9cbb2 100%);
 }
+/* 水中 */
 .sc-under .layer{background:
   radial-gradient(80% 60% at 50% 0%, #4fb3c9 0%, transparent 55%),
   linear-gradient(180deg,#1a7d97 0%, #0e4c66 55%, #072a3d 100%);
 }
+/* 光の帯(水面のきらめき) */
 .scene .light{
   position:absolute;inset:-20%;
   background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.14) 50%,transparent 58%);
   animation:lightdrift 14s ease-in-out infinite alternate;
 }
-@keyframes lightdrift{from{transform:translateX(-6%)}to{transform:translateX(6%)}}
+@keyframes lightdrift{from{transform:translateX(-6%) }to{transform:translateX(6%)}}
 .scene .layer{animation:kenburns 26s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1) translateY(0)}to{transform:scale(1.08) translateY(-1.5%)}}
 
@@ -145,77 +138,28 @@ header{
   position:fixed;inset:0 0 auto 0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
   padding:2rem 3.4rem;
-  transition:background .6s ease, padding .6s ease, color .6s ease;
+  transition:background .6s ease, padding .6s ease;
 }
 header.solid{background:rgba(245,243,238,.92);backdrop-filter:blur(8px);padding:1.1rem 3.4rem;border-bottom:1px solid var(--line)}
 .logo{display:flex;flex-direction:column;line-height:1}
 .logo .ja{font-size:1.5rem;font-weight:500;letter-spacing:.3em}
 .logo .en{font-family:var(--sans);font-size:.52rem;letter-spacing:.55em;margin-top:.45rem;font-weight:300}
-header,header a,header button{color:#fff;transition:color .6s ease}
-header.solid,header.solid a,header.solid button{color:var(--ink)}
-body.nav-open header,body.nav-open header a,body.nav-open header button{color:var(--ink)}
-.primary-nav > ul{
-  display:flex;align-items:center;gap:1.8rem;list-style:none;
-}
-.has-sub{position:relative}
-.nav-item{display:flex;align-items:center;gap:.15rem}
-.primary-nav .nav-link{
-  font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;font-weight:300;
-  position:relative;padding:.4rem 0;background:none;border:none;cursor:pointer;
-}
-.primary-nav .nav-link::after{
-  content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s ease;
-}
-.primary-nav .nav-link:hover::after,
-.primary-nav .has-sub.is-open > .nav-item > .nav-link::after{width:100%}
-.sub-toggle{
-  display:inline-flex;align-items:center;justify-content:center;
-  width:28px;height:28px;padding:0;margin:0;
-  background:none;border:none;cursor:pointer;color:inherit;
-  -webkit-tap-highlight-color:transparent;
-}
-.sub-toggle svg{width:10px;height:10px;transition:transform .35s ease}
-.has-sub.is-open > .nav-item > .sub-toggle svg{transform:rotate(180deg)}
-.sub-nav{
-  list-style:none;
-  position:absolute;top:calc(100% + .55rem);left:0;
-  min-width:12rem;padding:.7rem 0;
-  background:rgba(245,243,238,.97);backdrop-filter:blur(10px);
-  border:1px solid var(--line);
-  opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity .3s ease,visibility .3s ease;
-  z-index:110;
-}
-.has-sub.is-open > .sub-nav{opacity:1;visibility:visible;pointer-events:auto}
-.sub-nav a{
-  display:block;padding:.7rem 1.4rem;
-  font-family:var(--sans);font-size:.62rem;letter-spacing:.28em;font-weight:300;
-  color:var(--ink)!important;white-space:nowrap;
-}
-.sub-nav a:hover{background:rgba(27,27,25,.05)}
-.nav-toggle{
-  display:none;flex-shrink:0;
-  width:44px;height:44px;align-items:center;justify-content:center;
-  background:none;border:none;cursor:pointer;padding:0;
-  color:inherit;z-index:101;-webkit-tap-highlight-color:transparent;
-}
-.nav-toggle__bars{
-  display:flex;flex-direction:column;justify-content:center;gap:6px;
-  width:22px;height:16px;
-}
-.nav-toggle__bars span{
-  display:block;width:100%;height:1px;background:currentColor;
-  transition:transform .45s cubic-bezier(.19,1,.22,1),opacity .3s ease;
-  transform-origin:center;
-}
-body.nav-open .nav-toggle__bars span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-body.nav-open .nav-toggle__bars span:nth-child(2){opacity:0}
-body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+header,header a{color:#fff;transition:color .6s ease}
+header.solid,header.solid a{color:var(--ink)}
+nav ul{display:flex;gap:2.6rem;list-style:none}
+nav a{font-family:var(--sans);font-size:.68rem;letter-spacing:.3em;font-weight:300;position:relative;padding-bottom:.3rem}
+nav a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:currentColor;transition:width .4s ease}
+nav a:hover::after{width:100%}
 
 /* ---------- Hero ---------- */
 .hero{height:100svh;min-height:640px;position:relative;display:flex;align-items:center}
 .hero .scene{position:absolute;inset:0}
-.hero .veil{position:absolute;inset:0;background:linear-gradient(100deg,rgba(8,20,26,.55) 0%,rgba(8,20,26,.15) 55%,transparent 80%)}
+.hero-video{position:absolute;inset:-6% 0;width:100%;height:112%;object-fit:cover;display:block;
+  opacity:0;transition:opacity 1.8s ease}
+.hero-video.ready{opacity:1}
+.hero .veil{position:absolute;inset:0;background:
+  linear-gradient(100deg,rgba(8,20,26,.62) 0%,rgba(8,20,26,.28) 50%,rgba(8,20,26,.08) 80%),
+  linear-gradient(180deg,rgba(8,20,26,.35) 0%,transparent 22%,transparent 75%,rgba(8,20,26,.4) 100%)}
 .hero-inner{position:relative;z-index:2;color:#fff;padding:0 3.4rem;max-width:1280px;margin:0 auto;width:100%}
 .hero h1{
   font-size:clamp(1.9rem,4.4vw,3.6rem);
@@ -234,24 +178,17 @@ body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rot
 .scroll-cue{
   position:absolute;left:3.4rem;bottom:3rem;z-index:2;color:#fff;
   font-family:var(--sans);font-size:.62rem;letter-spacing:.4em;font-weight:300;
-  display:flex;align-items:center;gap:1.4rem;writing-mode:vertical-rl;
+  display:flex;align-items:center;gap:1.4rem;
 }
 .scroll-cue .bar{width:1px;height:64px;background:rgba(255,255,255,.5);overflow:hidden;position:relative}
 .scroll-cue .bar::after{content:"";position:absolute;left:0;top:-100%;width:1px;height:100%;background:#fff;animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%{top:-100%}60%{top:100%}100%{top:100%}}
+.scroll-cue{writing-mode:vertical-rl}
 
 /* ---------- reveal ---------- */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1.3s cubic-bezier(.19,1,.22,1),transform 1.3s cubic-bezier(.19,1,.22,1)}
 .rv.in{opacity:1;transform:none}
 .rv-d1{transition-delay:.15s}.rv-d2{transition-delay:.3s}.rv-d3{transition-delay:.45s}
-
-/* ---------- Showreel ---------- */
-.showreel{position:relative;min-height:70vh;display:flex;align-items:flex-end;color:#fff}
-.showreel .scene{position:absolute;inset:0}
-.showreel .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,26,.2) 0%,rgba(8,20,26,.7) 100%)}
-.showreel-inner{position:relative;z-index:2;padding:5rem 3.4rem;max-width:1280px;margin:0 auto;width:100%}
-.showreel .eyebrow{color:rgba(255,255,255,.55)}
-.showreel h2{color:#fff}
 
 /* ---------- Concept ---------- */
 .concept{padding:11rem 3.4rem;max-width:1280px;margin:0 auto;
@@ -261,8 +198,10 @@ body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rot
 .frame{position:relative;overflow:hidden}
 .frame .scene{height:100%}
 
-/* ---------- Interlude ---------- */
-.interlude{padding:12rem 2rem;text-align:center;position:relative}
+/* ---------- 言葉のインタールード(lea-lea的な"入ってくる言葉") ---------- */
+.interlude{
+  padding:12rem 2rem;text-align:center;position:relative;
+}
 .interlude p{
   font-size:clamp(1.3rem,2.6vw,2.1rem);
   font-weight:500;letter-spacing:.22em;line-height:2.2;
@@ -275,7 +214,7 @@ body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rot
 .interlude--dark{background:var(--ink);color:var(--paper)}
 .interlude--dark .en{color:rgba(245,243,238,.5)}
 
-/* ---------- Works ---------- */
+/* ---------- Works(黒背景・流れるリール) ---------- */
 .works{background:var(--ink);color:var(--paper);padding:10rem 0 11rem;overflow:hidden}
 .works-head{max-width:1280px;margin:0 auto 5rem;padding:0 3.4rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem}
 .works-head .eyebrow{color:rgba(245,243,238,.5)}
@@ -309,56 +248,22 @@ body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rot
 .svc h3 .no{font-family:var(--serif-en);font-style:italic;font-weight:300;font-size:.8rem;color:var(--gray)}
 .svc p{margin-top:1rem;font-size:.78rem;line-height:2.2;color:var(--ink-soft)}
 
-/* ---------- Plans / Features / Process / FAQ grids ---------- */
-.plan-grid,.feature-grid,.process-list,.faq-list,.case-grid{
-  margin-top:4rem;display:grid;gap:2rem;
-}
-.plan-grid{grid-template-columns:repeat(3,1fr)}
-.feature-grid{grid-template-columns:repeat(3,1fr)}
-.case-grid{grid-template-columns:1fr 1fr}
-.plan-card,.feature-card,.case-card,.process-step,.faq-item{
-  padding:2rem 0;border-top:1px solid var(--line);
-}
-.section-block--dark .plan-card,
-.section-block--dark .feature-card,
-.section-block--dark .case-card,
-.section-block--dark .process-step,
-.section-block--dark .faq-item{border-top-color:var(--line-light)}
-.plan-card h3,.feature-card h3,.case-card h3,.process-step h3,.faq-item h3{
-  font-size:.95rem;font-weight:500;letter-spacing:.16em;
-}
-.plan-card p,.feature-card p,.case-card p,.process-step p,.faq-item p{
-  margin-top:1rem;font-size:.78rem;line-height:2.2;color:var(--ink-soft);
-}
-.section-block--dark .plan-card p,
-.section-block--dark .feature-card p,
-.section-block--dark .case-card p,
-.section-block--dark .process-step p,
-.section-block--dark .faq-item p{color:rgba(245,243,238,.75)}
-.process-step .no,.faq-item .no{
-  font-family:var(--serif-en);font-style:italic;font-weight:300;
-  font-size:.8rem;color:var(--gray);margin-right:.8rem;
-}
-.section-block--dark .process-step .no,
-.section-block--dark .faq-item .no{color:rgba(245,243,238,.45)}
-
-/* ---------- Message (旧 About) ---------- */
-.message{position:relative;color:#fff}
-.message .scene{position:absolute;inset:0}
-.message .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,22,.72) 0%,rgba(10,18,22,.35) 60%,rgba(10,18,22,.15) 100%)}
-.message-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:11rem 3.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:end}
-.message .eyebrow{color:rgba(255,255,255,.55)}
-.message .lead{color:rgba(255,255,255,.9)}
-.message .more{color:#fff}
-.message .more .arrow{background:#fff}
-.message .more .arrow::after{background:#fff}
-.message .quote{
+/* ---------- About ---------- */
+.about{position:relative;color:#fff}
+.about .scene{position:absolute;inset:0}
+.about .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,22,.72) 0%,rgba(10,18,22,.35) 60%,rgba(10,18,22,.15) 100%)}
+.about-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:11rem 3.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:end}
+.about .eyebrow{color:rgba(255,255,255,.55)}
+.about .lead{color:rgba(255,255,255,.9)}
+.about .more{color:#fff}
+.about .more .arrow{background:#fff}.about .more .arrow::after{background:#fff}
+.about .quote{
   font-size:clamp(1rem,1.7vw,1.35rem);font-weight:500;
   letter-spacing:.14em;line-height:2.3;text-align:right;
   text-shadow:0 2px 24px rgba(0,10,16,.4);
 }
 
-/* ---------- Final CTA + Contact ---------- */
+/* ---------- CTA ---------- */
 .cta{display:grid;grid-template-columns:1.15fr 1fr;min-height:70vh}
 .cta .visual{position:relative}
 .cta .visual .scene{position:absolute;inset:0}
@@ -382,7 +287,6 @@ body.nav-open .nav-toggle__bars span:nth-child(3){transform:translateY(-7px) rot
 .btn:hover{opacity:.82}
 .btn .arrow{width:44px;height:1px;background:var(--paper);position:relative}
 .btn .arrow::after{content:"";position:absolute;right:0;top:-3px;width:8px;height:1px;background:var(--paper);transform:rotate(32deg);transform-origin:right center}
-.contact-form-area{padding:8rem 3.4rem 11rem;max-width:720px;margin:0 auto}
 
 /* ---------- Footer ---------- */
 footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
@@ -392,9 +296,6 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 .foot-nav{list-style:none;display:flex;flex-direction:column;gap:1rem;border-left:1px solid var(--line-light);padding-left:3rem}
 .foot-nav a{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
 .foot-nav a:hover{color:#fff}
-.foot-social{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
-.foot-social a{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
-.foot-social a:hover{color:#fff}
 .foot-info{font-size:.75rem;line-height:2.4;color:rgba(245,243,238,.75);font-family:var(--sans);font-weight:300;letter-spacing:.1em}
 .foot-info strong{font-family:var(--mincho);font-weight:500;font-size:.85rem;letter-spacing:.2em;color:var(--paper)}
 .copyright{max-width:1280px;margin:5rem auto 0;padding-top:2rem;border-top:1px solid var(--line-light);
@@ -402,87 +303,34 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 
 /* ---------- Responsive ---------- */
 @media (max-width:900px){
-  header{
-    padding:max(1.4rem,env(safe-area-inset-top)) max(1.6rem,env(safe-area-inset-right)) 1.4rem max(1.6rem,env(safe-area-inset-left));
-  }
-  header.solid{padding:max(1rem,env(safe-area-inset-top)) max(1.6rem,env(safe-area-inset-right)) 1rem max(1.6rem,env(safe-area-inset-left))}
-  .nav-toggle{display:flex}
-  .primary-nav{
-    position:fixed;inset:0;z-index:99;
-    display:block;overflow-y:auto;
-    padding:max(5.5rem,env(safe-area-inset-top)) max(1.6rem,env(safe-area-inset-right)) max(2.5rem,env(safe-area-inset-bottom)) max(1.6rem,env(safe-area-inset-left));
-    background:rgba(245,243,238,.97);
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-    opacity:0;visibility:hidden;pointer-events:none;
-    transition:opacity .45s ease,visibility .45s ease;
-    overscroll-behavior:contain;
-  }
-  .primary-nav.is-open{opacity:1;visibility:visible;pointer-events:auto}
-  .primary-nav > ul{
-    flex-direction:column;align-items:stretch;gap:0;
-    max-width:22rem;margin:0 auto;
-  }
-  .primary-nav > ul > li{
-    opacity:0;transform:translateY(14px);
-    transition:opacity .5s cubic-bezier(.19,1,.22,1),transform .5s cubic-bezier(.19,1,.22,1);
-    border-bottom:1px solid var(--line);
-  }
-  .primary-nav.is-open > ul > li{opacity:1;transform:none}
-  .primary-nav.is-open > ul > li:nth-child(1){transition-delay:.05s}
-  .primary-nav.is-open > ul > li:nth-child(2){transition-delay:.08s}
-  .primary-nav.is-open > ul > li:nth-child(3){transition-delay:.11s}
-  .primary-nav.is-open > ul > li:nth-child(4){transition-delay:.14s}
-  .primary-nav.is-open > ul > li:nth-child(5){transition-delay:.17s}
-  .primary-nav.is-open > ul > li:nth-child(6){transition-delay:.2s}
-  .primary-nav.is-open > ul > li:nth-child(7){transition-delay:.23s}
-  .nav-item{justify-content:space-between;min-height:52px}
-  .primary-nav .nav-link{
-    font-size:.82rem;letter-spacing:.38em;
-    padding:.9rem 0;flex:1;text-align:left;
-  }
-  .primary-nav .nav-link::after{display:none}
-  .sub-toggle{width:44px;height:44px}
-  .sub-toggle svg{width:12px;height:12px}
-  .sub-nav{
-    position:static;transform:none;min-width:0;
-    padding:0 0 1rem 0;border:none;background:transparent;
-    opacity:1;visibility:visible;pointer-events:none;
-    display:none;
-  }
-  .has-sub.is-open > .sub-nav{display:block;pointer-events:auto}
-  .sub-nav a{
-    padding:.65rem 0 .65rem .2rem;
-    font-size:.7rem;letter-spacing:.3em;
-    color:var(--ink-soft)!important;
-  }
-  body.nav-open{overflow:hidden}
-  .hero-inner,.showreel-inner,.section-block,.section-block--dark,.section-block--beige{padding-left:1.6rem;padding-right:1.6rem}
-  .section-block,.section-block--dark,.section-block--beige{padding-top:7rem;padding-bottom:7rem}
+  header{padding:1.4rem 1.6rem}
+  header.solid{padding:1rem 1.6rem}
+  nav{display:none}
+  .hero-inner{padding:0 1.6rem}
+  .hero h1{font-size:min(7vw,2.2rem);letter-spacing:.1em}
+  .hero h1 .line{white-space:nowrap}
   .scroll-cue{left:1.6rem}
   .concept{grid-template-columns:1fr;padding:7rem 1.6rem;gap:4rem}
   .service{padding:7rem 1.6rem}
-  .service-grid,.plan-grid,.feature-grid{grid-template-columns:1fr 1fr;gap:3rem 1.6rem}
-  .case-grid{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:1fr 1fr;gap:3rem 1.6rem}
   .works{padding:7rem 0 8rem}
   .works-head{padding:0 1.6rem;margin-bottom:3.5rem}
-  .message-inner{grid-template-columns:1fr;padding:7rem 1.6rem;gap:3rem}
-  .message .quote{text-align:left}
+  .about-inner{grid-template-columns:1fr;padding:7rem 1.6rem;gap:3rem}
+  .about .quote{text-align:left}
   .cta{grid-template-columns:1fr}
   .cta .visual{min-height:60vh}
   .cta .panel{padding:4rem 1.6rem}
-  .contact-form-area{padding:5rem 1.6rem 7rem}
   .foot-grid{grid-template-columns:1fr;gap:3rem}
   .foot-nav{border-left:none;padding-left:0;flex-direction:row;flex-wrap:wrap;gap:1.4rem}
   footer{padding:4.5rem 1.6rem 2.5rem}
 }
 @media (max-width:600px){
-  .service-grid,.plan-grid,.feature-grid{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:1fr}
   .interlude{padding:8rem 1.6rem}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
-  .primary-nav > ul > li{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
 </style>
@@ -494,81 +342,24 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
     <span class="ja">結映</span>
     <span class="en">YUEI</span>
   </a>
-  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="メニューを開く">
-    <span class="nav-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
-  </button>
-  <nav class="primary-nav" id="primary-nav" aria-label="メインナビゲーション">
+  <nav>
     <ul>
-      <li>
-        <div class="nav-item">
-          <a class="nav-link" href="#top">HOME</a>
-        </div>
-      </li>
-      <li class="has-sub">
-        <div class="nav-item">
-          <a class="nav-link" href="#concept">ABOUT</a>
-          <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-about" aria-label="ABOUTのサブメニューを開く">
-            <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
-          </button>
-        </div>
-        <ul class="sub-nav" id="sub-about">
-          <li><a href="#concept">CONCEPT</a></li>
-          <li><a href="#philosophy">PHILOSOPHY</a></li>
-          <li><a href="#message">MESSAGE</a></li>
-        </ul>
-      </li>
-      <li class="has-sub">
-        <div class="nav-item">
-          <a class="nav-link" href="#services">SERVICES</a>
-          <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-services" aria-label="SERVICESのサブメニューを開く">
-            <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
-          </button>
-        </div>
-        <ul class="sub-nav" id="sub-services">
-          <li><a href="#services">SERVICES</a></li>
-          <li><a href="#plans">PLANS</a></li>
-          <li><a href="#features">FEATURES</a></li>
-        </ul>
-      </li>
-      <li class="has-sub">
-        <div class="nav-item">
-          <a class="nav-link" href="#showreel">WORKS</a>
-          <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="sub-works" aria-label="WORKSのサブメニューを開く">
-            <svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" stroke-width="1"/></svg>
-          </button>
-        </div>
-        <ul class="sub-nav" id="sub-works">
-          <li><a href="#showreel">SHOWREEL</a></li>
-          <li><a href="#works">WORKS</a></li>
-          <li><a href="#case-study">CASE STUDY</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="nav-item">
-          <a class="nav-link" href="#process">PROCESS</a>
-        </div>
-      </li>
-      <li>
-        <div class="nav-item">
-          <a class="nav-link" href="#faq">FAQ</a>
-        </div>
-      </li>
-      <li>
-        <div class="nav-item">
-          <a class="nav-link" href="#contact">CONTACT</a>
-        </div>
-      </li>
+      <li><a href="#top">TOP</a></li>
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#service">SERVICE</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
   </nav>
 </header>
 
-<main id="main">
-
-<!-- ================= HOME ================= -->
+<!-- ================= HERO ================= -->
+<!-- .scene は全画面動画に差し替え(<video autoplay muted loop playsinline>) -->
 <section class="hero" id="top">
-  <div class="scene sc-aerial" data-parallax>
-    <div class="layer"></div>
-    <div class="light"></div>
+  <div class="scene" data-parallax style="background:#0c1c22 url(assets/hero-poster.jpg) center/cover no-repeat">
+    <video class="hero-video" id="heroVideo" muted loop playsinline autoplay preload="auto"
+           poster="assets/hero-poster.jpg" aria-hidden="true"></video>
   </div>
   <div class="veil"></div>
   <div class="hero-inner">
@@ -579,20 +370,6 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
     <p class="sub">人や場所の魅力を映像で伝え、<br>誰かの「行ってみたい」をつくる。</p>
   </div>
   <div class="scroll-cue"><span>SCROLL</span><span class="bar"></span></div>
-</section>
-
-<!-- ================= SHOWREEL ================= -->
-<section class="showreel" id="showreel">
-  <div class="scene sc-under" data-parallax>
-    <div class="layer"></div>
-    <div class="light"></div>
-  </div>
-  <div class="veil"></div>
-  <div class="showreel-inner">
-    <p class="eyebrow rv">Showreel</p>
-    <h2 class="heading rv rv-d1">ブランドムービー</h2>
-    <p class="lead rv rv-d2" style="color:rgba(255,255,255,.9)">ここにブランドムービー（フルスクリーン映像）を配置予定。</p>
-  </div>
 </section>
 
 <!-- ================= CONCEPT ================= -->
@@ -607,32 +384,62 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
       その先にある成果にこだわるクリエイティブパートナー。<br>
       お客様の広報支援部として、魅力が伝わるまで伴走します。
     </p>
-    <a class="more rv rv-d3" href="#philosophy"><span>VIEW MORE</span><span class="arrow"></span></a>
+    <a class="more rv rv-d3" href="#"><span>VIEW MORE</span><span class="arrow"></span></a>
   </div>
   <div class="frame rv rv-d1">
     <div class="scene sc-dusk"><div class="layer"></div><div class="light"></div></div>
   </div>
 </section>
 
-<!-- ================= PHILOSOPHY ================= -->
-<section class="section-block section-block--narrow" id="philosophy">
-  <p class="eyebrow rv">Philosophy</p>
-  <h2 class="heading rv rv-d1">理念・ビジョン</h2>
-  <p class="lead rv rv-d2">
-    「行ってみたい」をつくり、人と場所をつなぐ。<br>
-    映像を通じて、まだ見ぬ景色への招待状を届けることが、私たちの理念です。
-  </p>
-  <p class="placeholder-note rv rv-d3">※ ビジョン・ミッション・バリューの本文は追記予定</p>
-</section>
-
+<!-- ================= INTERLUDE(言葉) ================= -->
 <section class="interlude">
   <p class="rv">映像は、まだ見ぬ景色への招待状。</p>
   <span class="en rv rv-d1">— A film is an invitation to a place you haven't seen.</span>
 </section>
 
-<!-- ================= SERVICES ================= -->
-<section class="service" id="services">
-  <p class="eyebrow rv">Services</p>
+<!-- ================= WORKS ================= -->
+<section class="works" id="works">
+  <div class="works-head">
+    <div>
+      <p class="eyebrow rv">Works</p>
+      <h2 class="heading rv rv-d1">制作事例</h2>
+    </div>
+    <a class="more rv rv-d2" href="#"><span>VIEW ALL</span><span class="arrow"></span></a>
+  </div>
+  <!-- 流れるリール:hoverで一時停止 / 実装時はサムネイル動画に差し替え -->
+  <div class="reel" aria-label="制作事例一覧">
+    <!-- set 1 -->
+    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
+      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
+      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
+      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
+      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
+    <!-- set 2(ループ用複製) -->
+    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
+      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
+      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
+      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
+      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
+    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
+      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- ================= SERVICE ================= -->
+<section class="service" id="service">
+  <p class="eyebrow rv">Service</p>
   <h2 class="heading rv rv-d1">サービス</h2>
   <p class="lead rv rv-d2">映像をつくることが目的ではなく、<br>魅力を伝え、成果につなげることが私たちの仕事です。</p>
   <div class="service-grid">
@@ -657,223 +464,52 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
   </div>
 </section>
 
-<!-- ================= PLANS ================= -->
-<section class="section-block section-block--beige" id="plans">
-  <div class="inner">
-    <p class="eyebrow rv">Plans</p>
-    <h2 class="heading rv rv-d1">プラン・料金</h2>
-    <p class="lead rv rv-d2">目的と規模に合わせたプランをご用意しています。</p>
-    <div class="plan-grid">
-      <div class="plan-card rv">
-        <h3>LIGHT</h3>
-        <p>SNS向けショート動画など、まずは試しに始めたい方向けのエントリープラン。</p>
-      </div>
-      <div class="plan-card rv rv-d1">
-        <h3>STANDARD</h3>
-        <p>施設PRムービーの定番構成。企画〜撮影〜編集までワンストップ。</p>
-      </div>
-      <div class="plan-card rv rv-d2">
-        <h3>PREMIUM</h3>
-        <p>ブランドムービーや複数媒体展開など、世界観ごと設計する上位プラン。</p>
-      </div>
-    </div>
-    <p class="placeholder-note rv">※ 正式な料金表・含まれる内容は追記予定</p>
-  </div>
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section class="section-block" id="features">
-  <p class="eyebrow rv">Features</p>
-  <h2 class="heading rv rv-d1">結映の強み</h2>
-  <p class="lead rv rv-d2">美しさだけでなく、成果まで見据えて伴走します。</p>
-  <div class="feature-grid">
-    <div class="feature-card rv">
-      <h3>成果にこだわる設計</h3>
-      <p>予約・来訪・認知など、目的から逆算して企画します。</p>
-    </div>
-    <div class="feature-card rv rv-d1">
-      <h3>宿泊施設への理解</h3>
-      <p>客室・料理・ロケーションなど、宿の魅力を映像で翻訳します。</p>
-    </div>
-    <div class="feature-card rv rv-d2">
-      <h3>広報の伴走</h3>
-      <p>撮って終わりにせず、発信まで含めて支援します。</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= WORKS ================= -->
-<section class="works" id="works">
-  <div class="works-head">
-    <div>
-      <p class="eyebrow rv">Works</p>
-      <h2 class="heading rv rv-d1">制作実績</h2>
-    </div>
-    <a class="more rv rv-d2" href="#case-study"><span>VIEW ALL</span><span class="arrow"></span></a>
-  </div>
-  <div class="reel" aria-label="制作実績一覧">
-    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
-      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
-      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
-      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
-      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
-      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
-      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-room"><div class="layer"></div></div></div>
-      <figcaption>HAKONE RETREAT<span>PR MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-forest"><div class="layer"></div></div></div>
-      <figcaption>CHICHIBU VILLA<span>BRANDING MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-lake"><div class="layer"></div></div></div>
-      <figcaption>KAWAGUCHIKO GLAMPING<span>PROMOTION MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-aerial"><div class="layer"></div><div class="light"></div></div></div>
-      <figcaption>BOSO SEASIDE INN<span>PR MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-dusk"><div class="layer"></div></div></div>
-      <figcaption>SHONAN TERRACE<span>CONCEPT MOVIE</span></figcaption></figure>
-    <figure class="card"><div class="frame"><div class="scene sc-under"><div class="layer"></div><div class="light"></div></div></div>
-      <figcaption>IZU DIVING RESORT<span>PROMOTION MOVIE</span></figcaption></figure>
-  </div>
-</section>
-
-<!-- ================= CASE STUDY ================= -->
-<section class="section-block section-block--dark" id="case-study">
-  <div style="max-width:1280px;margin:0 auto">
-    <p class="eyebrow rv">Case Study</p>
-    <h2 class="heading rv rv-d1">導入事例</h2>
-    <p class="lead rv rv-d2">課題から成果までのストーリーを、事例として紹介します。</p>
-    <div class="case-grid">
-      <div class="case-card rv">
-        <h3>CASE 01 — 箱根のヴィラ</h3>
-        <p>認知拡大を目的にブランドムービーを制作。SNSでの反応と予約問い合わせが増加。</p>
-      </div>
-      <div class="case-card rv rv-d1">
-        <h3>CASE 02 — 湖畔グランピング</h3>
-        <p>空撮と滞在シーンの組み合わせで「行ってみたい」を喚起。公式サイトの導線を改善。</p>
-      </div>
-    </div>
-    <p class="placeholder-note rv rv-d2">※ 実数値・お客様の声は追記予定</p>
-  </div>
-</section>
-
-<!-- ================= PROCESS ================= -->
-<section class="section-block" id="process">
-  <p class="eyebrow rv">Process</p>
-  <h2 class="heading rv rv-d1">制作の流れ</h2>
-  <p class="lead rv rv-d2">ご相談から納品まで、透明なステップで伴走します。</p>
-  <div class="process-list">
-    <div class="process-step rv"><h3><span class="no">01</span>ヒアリング</h3><p>目的・ターゲット・予算感を伺い、映像の役割を定義します。</p></div>
-    <div class="process-step rv rv-d1"><h3><span class="no">02</span>企画・構成</h3><p>世界観とストーリーを設計し、撮影プランに落とし込みます。</p></div>
-    <div class="process-step rv"><h3><span class="no">03</span>撮影</h3><p>空撮・地上・室内など、魅力が最も伝わる角度で撮影します。</p></div>
-    <div class="process-step rv rv-d1"><h3><span class="no">04</span>編集・納品</h3><p>用途に合わせた尺・比率で仕上げ、公開までサポートします。</p></div>
-  </div>
-</section>
-
+<!-- ================= INTERLUDE(言葉・黒) ================= -->
 <section class="interlude interlude--dark">
   <p class="rv">「行ってみたい」は、つくれる。</p>
   <span class="en rv rv-d1">— We craft the moment people decide to go.</span>
 </section>
 
-<!-- ================= MESSAGE ================= -->
-<section class="message" id="message">
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
   <div class="scene sc-forest" data-parallax><div class="layer"></div><div class="light"></div></div>
   <div class="veil"></div>
-  <div class="message-inner">
+  <div class="about-inner">
     <div>
-      <p class="eyebrow rv">Message</p>
-      <h2 class="heading rv rv-d1" style="color:#fff">代表メッセージ</h2>
+      <p class="eyebrow rv">About Us</p>
+      <h2 class="heading rv rv-d1" style="color:#fff">私たちについて</h2>
       <p class="lead rv rv-d2">
         訪問営業で培った「相手の課題を解決する力」と<br>
         「結果にこだわる姿勢」を、映像づくりに活かしています。<br><br>
         まだ小さな会社ですが、一件一件に真剣に向き合い、<br>
         信頼と実績を積み重ねていきます。
       </p>
-      <a class="more rv rv-d3" href="#contact"><span>CONTACT</span><span class="arrow"></span></a>
+      <a class="more rv rv-d3" href="#"><span>VIEW MORE</span><span class="arrow"></span></a>
     </div>
     <p class="quote rv rv-d2">「こんな映像が欲しかった」<br>その一言のために、全力で向き合います。</p>
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
-<section class="section-block section-block--beige" id="faq">
-  <div class="inner">
-    <p class="eyebrow rv">FAQ</p>
-    <h2 class="heading rv rv-d1">よくある質問</h2>
-    <div class="faq-list">
-      <div class="faq-item rv">
-        <h3><span class="no">Q.</span>対応エリアはどこですか？</h3>
-        <p>関東を中心に対応しています。遠方もご相談ください。</p>
-      </div>
-      <div class="faq-item rv rv-d1">
-        <h3><span class="no">Q.</span>撮影日数の目安は？</h3>
-        <p>内容によりますが、1〜2日撮影が一般的です。</p>
-      </div>
-      <div class="faq-item rv">
-        <h3><span class="no">Q.</span>納期はどのくらいですか？</h3>
-        <p>企画内容と修正回数により異なります。ヒアリング時にお伝えします。</p>
-      </div>
-      <div class="faq-item rv rv-d1">
-        <h3><span class="no">Q.</span>見積もりだけでも可能ですか？</h3>
-        <p>はい。お気軽にお問い合わせください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FINAL CTA ================= -->
-<section class="cta" id="final-cta">
+<!-- ================= CTA ================= -->
+<section class="cta" id="contact">
   <div class="visual">
     <div class="scene sc-dusk"><div class="layer"></div><div class="light"></div></div>
     <div class="veil"></div>
     <div class="copy">
-      <p class="eyebrow rv" style="color:rgba(255,255,255,.6)">Final CTA</p>
+      <p class="eyebrow rv" style="color:rgba(255,255,255,.6)">Message</p>
       <h2 class="rv rv-d1">困ったときに、<br>まず相談したくなる存在へ。</h2>
       <p class="rv rv-d2">お客様の広報支援部として、<br>一緒に魅力を伝え、成果をつくります。</p>
     </div>
   </div>
   <div class="panel">
-    <p class="eyebrow rv">Next Step</p>
-    <h2 class="rv rv-d1">お問い合わせのご案内</h2>
+    <p class="eyebrow rv">Contact</p>
+    <h2 class="rv rv-d1">ご相談・お問い合わせ</h2>
     <p class="rv rv-d2">映像制作のご相談やお見積もりなど、<br>お気軽にお問い合わせください。</p>
-    <a class="btn rv rv-d3" href="#contact"><span>CONTACT US</span><span class="arrow"></span></a>
+    <a class="btn rv rv-d3" href="#"><span>CONTACT US</span><span class="arrow"></span></a>
   </div>
 </section>
 
-<!-- ================= CONTACT ================= -->
-<section class="contact-form-area" id="contact">
-  <p class="eyebrow rv">Contact</p>
-  <h2 class="heading rv rv-d1">お問い合わせ</h2>
-  <p class="lead rv rv-d2">フォーム実装前のプレースホルダーです。送信先・項目は追記予定。</p>
-  <p class="placeholder-note rv rv-d3">
-    想定項目：お名前 / 施設名・会社名 / メール / 電話 / ご相談内容<br>
-    ※ 実装時にフォーム（または外部フォーム）へ差し替え
-  </p>
-</section>
-
-<!-- ================= COMPANY (フッター導線用) ================= -->
-<section class="section-block section-block--narrow" id="company">
-  <p class="eyebrow rv">Company</p>
-  <h2 class="heading rv rv-d1">会社概要</h2>
-  <p class="lead rv rv-d2">
-    株式会社 結映（ユウエイ）<br>
-    拠点：関東<br>
-    事業：ドローン映像制作 / 映像・写真制作 / SNS支援
-  </p>
-  <p class="placeholder-note rv rv-d3">※ 設立年月日・代表者名・登記住所など正式情報は追記予定</p>
-</section>
-
-<!-- ================= PRIVACY ================= -->
-<section class="section-block section-block--narrow" id="privacy" style="padding-top:4rem">
-  <p class="eyebrow rv">Privacy Policy</p>
-  <h2 class="heading rv rv-d1">プライバシーポリシー</h2>
-  <p class="placeholder-note rv rv-d1">※ 個人情報の取り扱いに関する本文は追記予定</p>
-</section>
-
-</main>
-
+<!-- ================= FOOTER ================= -->
 <footer>
   <div class="foot-grid">
     <a class="foot-logo" href="#top">
@@ -881,15 +517,14 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
       <span class="en">YUEI</span>
     </a>
     <ul class="foot-nav">
-      <li><a href="#company">COMPANY</a></li>
-      <li><a href="#privacy">PRIVACY POLICY</a></li>
-      <li class="foot-social">
-        <a href="#" aria-label="Instagram（準備中）">Instagram</a>
-        <a href="#" aria-label="YouTube（準備中）">YouTube</a>
-        <a href="#" aria-label="TikTok（準備中）">TikTok</a>
-      </li>
+      <li><a href="#top">TOP</a></li>
+      <li><a href="#concept">CONCEPT</a></li>
+      <li><a href="#works">WORKS</a></li>
+      <li><a href="#service">SERVICE</a></li>
+      <li><a href="#about">ABOUT</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
-    <div class="foot-info" id="company-summary">
+    <div class="foot-info">
       <strong>株式会社 結映(ユウエイ)</strong><br>
       〒000-0000 東京都○○区○○ 0-0-0(住所はダミーです)<br>
       TEL:000-0000-0000<br>
@@ -900,161 +535,46 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 </footer>
 
 <script>
-const header=document.getElementById('header')
-const onScrollHeader=()=>{header.classList.toggle('solid',window.scrollY>window.innerHeight*0.75)}
-window.addEventListener('scroll',onScrollHeader,{passive:true})
-onScrollHeader()
+// ---------- スクロール連動:ヘッダー ----------
+const header=document.getElementById('header');
+const onScrollHeader=()=>{header.classList.toggle('solid',window.scrollY>window.innerHeight*0.75)};
+window.addEventListener('scroll',onScrollHeader,{passive:true});
+onScrollHeader();
 
-const navToggle=document.querySelector('.nav-toggle')
-const primaryNav=document.getElementById('primary-nav')
-const main=document.getElementById('main')
-const mobileNavMq=matchMedia('(max-width: 900px)')
-const subItems=[...primaryNav.querySelectorAll('.has-sub')]
+// ---------- Hero動画:画面幅でPC/SP版を出し分け ----------
+(()=>{
+  const v=document.getElementById('heroVideo');
+  if(!v)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.remove();return} // ポスター静止画のみ
+  v.src=innerWidth<=900?'assets/hero-sp.mp4':'assets/hero.mp4';
+  v.addEventListener('playing',()=>v.classList.add('ready'),{once:true});
+  v.play().catch(()=>{}); // 自動再生不可の環境ではポスター表示のまま
+})();
 
-function getNavFocusables(){
-  return [navToggle,...primaryNav.querySelectorAll('a, .sub-toggle')].filter(el=>{
-    if(el.closest('.sub-nav')&&!el.closest('.has-sub.is-open')) return false
-    return true
-  })
-}
-
-function closeAllSubs(except){
-  subItems.forEach(item=>{
-    if(item===except) return
-    item.classList.remove('is-open')
-    const btn=item.querySelector('.sub-toggle')
-    if(btn){
-      btn.setAttribute('aria-expanded','false')
-      const label=btn.getAttribute('aria-label')||''
-      btn.setAttribute('aria-label',label.replace('閉じる','開く'))
-    }
-  })
-}
-
-function setSubOpen(item,isOpen){
-  const btn=item.querySelector('.sub-toggle')
-  item.classList.toggle('is-open',isOpen)
-  if(!btn) return
-  btn.setAttribute('aria-expanded',String(isOpen))
-  const base=btn.getAttribute('aria-label').replace(/(を開く|を閉じる)$/,'')
-  btn.setAttribute('aria-label',`${base}${isOpen?'を閉じる':'を開く'}`)
-}
-
-function setNavOpen(isOpen){
-  document.body.classList.toggle('nav-open',isOpen)
-  primaryNav.classList.toggle('is-open',isOpen)
-  navToggle.setAttribute('aria-expanded',String(isOpen))
-  navToggle.setAttribute('aria-label',isOpen?'メニューを閉じる':'メニューを開く')
-  if(main) main.inert=isOpen
-  document.body.style.overflow=isOpen?'hidden':''
-  if(!isOpen){
-    closeAllSubs()
-    navToggle.focus()
-    return
-  }
-  const firstLink=primaryNav.querySelector('.nav-link')
-  firstLink?.focus()
-}
-
-navToggle.addEventListener('click',()=>setNavOpen(!primaryNav.classList.contains('is-open')))
-
-subItems.forEach(item=>{
-  const btn=item.querySelector('.sub-toggle')
-  const parentLink=item.querySelector('.nav-link')
-
-  btn.addEventListener('click',e=>{
-    e.preventDefault()
-    e.stopPropagation()
-    const willOpen=!item.classList.contains('is-open')
-    closeAllSubs(item)
-    setSubOpen(item,willOpen)
-  })
-
-  // PC: ホバーでも開く（キーボードはボタン操作）
-  item.addEventListener('mouseenter',()=>{
-    if(mobileNavMq.matches) return
-    closeAllSubs(item)
-    setSubOpen(item,true)
-  })
-  item.addEventListener('mouseleave',()=>{
-    if(mobileNavMq.matches) return
-    setSubOpen(item,false)
-  })
-
-  parentLink.addEventListener('click',()=>{
-    if(primaryNav.classList.contains('is-open')) setNavOpen(false)
-  })
-})
-
-primaryNav.querySelectorAll('.sub-nav a').forEach(link=>{
-  link.addEventListener('click',()=>{
-    closeAllSubs()
-    if(primaryNav.classList.contains('is-open')) setNavOpen(false)
-  })
-})
-
-primaryNav.querySelectorAll('.nav-link').forEach(link=>{
-  if(link.closest('.has-sub')) return
-  link.addEventListener('click',()=>{
-    if(primaryNav.classList.contains('is-open')) setNavOpen(false)
-  })
-})
-
-document.addEventListener('click',e=>{
-  if(mobileNavMq.matches) return
-  if(!primaryNav.contains(e.target)) closeAllSubs()
-})
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    if(primaryNav.classList.contains('is-open')){
-      const openSub=primaryNav.querySelector('.has-sub.is-open')
-      if(openSub){
-        setSubOpen(openSub,false)
-        openSub.querySelector('.sub-toggle')?.focus()
-        return
-      }
-      setNavOpen(false)
-      return
-    }
-    closeAllSubs()
-    return
-  }
-
-  if(e.key!=='Tab'||!primaryNav.classList.contains('is-open')) return
-  const focusables=getNavFocusables()
-  const first=focusables[0],last=focusables[focusables.length-1]
-  if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
-  else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
-})
-
-mobileNavMq.addEventListener('change',e=>{
-  closeAllSubs()
-  if(!e.matches) setNavOpen(false)
-})
-
+// ---------- フェードイン(IntersectionObserver) ----------
 const io=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})
-},{threshold:.15,rootMargin:'0px 0px -8% 0px'})
-document.querySelectorAll('.rv').forEach(el=>io.observe(el))
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches
+// ---------- パララックス(控えめ) ----------
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced){
-  const targets=[...document.querySelectorAll('[data-parallax]')]
-  let ticking=false
+  const targets=[...document.querySelectorAll('[data-parallax]')];
+  let ticking=false;
   const parallax=()=>{
     targets.forEach(t=>{
-      const r=t.parentElement.getBoundingClientRect()
-      if(r.bottom<0||r.top>innerHeight) return
-      const p=(r.top+r.height/2-innerHeight/2)/innerHeight
-      t.style.transform=`translateY(${p*-40}px)`
-    })
-    ticking=false
-  }
+      const r=t.parentElement.getBoundingClientRect();
+      if(r.bottom<0||r.top>innerHeight)return;
+      const p=(r.top+r.height/2-innerHeight/2)/innerHeight; // -0.5〜0.5程度
+      t.style.transform=`translateY(${p*-40}px)`;
+    });
+    ticking=false;
+  };
   window.addEventListener('scroll',()=>{
     if(!ticking){requestAnimationFrame(parallax);ticking=true}
-  },{passive:true})
-  parallax()
+  },{passive:true});
+  parallax();
 }
 </script>
 </body>
