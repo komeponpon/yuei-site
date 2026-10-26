@@ -335,7 +335,7 @@ section:has(> [data-parallax]){overflow:hidden}
 .cmp-tag span{display:inline-block;padding:.3rem .9rem;background:var(--ink);color:var(--paper);
   font-family:var(--sans);font-size:.66rem;font-weight:300;letter-spacing:.3em}
 .cmp-name{margin-top:.9rem;font-family:var(--serif-en);font-weight:400;font-size:clamp(1.9rem,3vw,2.7rem);letter-spacing:.12em;line-height:1.3}
-.cmp-desc{margin-top:1.2rem;font-size:.92rem;line-height:2;color:var(--ink-soft);min-height:4em;word-break:auto-phrase}
+.cmp-desc{margin-top:1.2rem;font-size:.92rem;line-height:2;color:var(--ink-soft);min-height:4em;margin-bottom:1.8rem;word-break:auto-phrase}
 .cmp-price{margin:1.4rem 0 1.8rem;font-family:var(--serif-en);font-size:1.75rem;letter-spacing:.04em;line-height:1.4}
 .cmp-price small{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:var(--gray);margin-left:.3rem}
 .cmp-btn{margin-top:auto;display:inline-block;padding:.95rem 1.8rem;border:1px solid var(--ink);
@@ -501,7 +501,7 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
   .feature-grid{grid-template-columns:1fr;gap:0}
   .cmp-models,.cmp-row,.cmp-bar{column-gap:.7rem}
   .cmp-tag span{padding:.25rem .5rem;font-size:.56rem;letter-spacing:.14em}
-  .cmp-name{font-size:1.15rem;letter-spacing:.04em}
+  .cmp-name{font-size:1.15rem;letter-spacing:.04em;margin-bottom:1.2rem}
   .cmp-desc{display:none} /* 狭い画面では料金と比較表に絞る */
   .pc-only{display:none}
   .cmp-price{font-size:1.15rem;margin:.8rem 0 1.2rem}
@@ -650,29 +650,26 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 <section class="section-block section-block--beige" id="plans">
   <div class="inner">
     <p class="eyebrow rv">Plans</p>
-    <h2 class="heading rv rv-d1">プラン・料金</h2>
-    <p class="lead rv rv-d2">目的と規模に合わせて、3つのプランからお選びいただけます。</p>
+    <h2 class="heading rv rv-d1">プラン</h2>
+    <p class="lead rv rv-d2">目的と規模に合わせて、3つのプランからお選びいただけます。<br>料金はご相談内容に合わせてお見積りします。</p>
     <div class="cmp">
       <div class="cmp-models">
       <div class="cmp-model rv">
         <p class="cmp-tag">&nbsp;</p>
         <h3 class="cmp-name">LIGHT</h3>
         <p class="cmp-desc">SNS向けショート動画など、<br>まずは試してみたい方に。</p>
-        <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
         <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       <div class="cmp-model rv rv-d1">
         <p class="cmp-tag"><span>おすすめ</span></p>
         <h3 class="cmp-name">STANDARD</h3>
         <p class="cmp-desc">施設PRムービーの定番。<br>企画から撮影・編集まで。</p>
-        <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
         <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       <div class="cmp-model rv rv-d2">
         <p class="cmp-tag">&nbsp;</p>
         <h3 class="cmp-name">PREMIUM</h3>
         <p class="cmp-desc">ブランドムービーや複数媒体展開。<br>世界観ごと設計します。</p>
-        <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
         <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       </div>
@@ -698,7 +695,7 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
         <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">約2週間</span><span class="k">納期の目安</span></div><div class="cmp-cell"><span class="v">約3〜4週間</span><span class="k">納期の目安</span></div><div class="cmp-cell"><span class="v">約1.5〜2ヶ月</span><span class="k">納期の目安</span></div></div>
       </div>
     </div>
-    <p class="placeholder-note rv">※ 料金・各項目の内容は仮置きです。正式な内容に差し替えてください</p>
+    <p class="placeholder-note rv">※ 各項目の内容は仮置きです。正式な内容に差し替えてください</p>
   </div>
 </section>
 
