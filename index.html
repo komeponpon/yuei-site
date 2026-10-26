@@ -18,7 +18,7 @@
   --ink-soft:#3a3936;
   --paper:#f5f3ee;
   --beige:#eae5db;
-  --gray:#8b8880;
+  --gray:#6e6b64;
   --line:rgba(27,27,25,.16);
   --line-light:rgba(245,243,238,.25);
   --mincho:"Shippori Mincho","Yu Mincho","Hiragino Mincho ProN",serif;
@@ -43,31 +43,33 @@ a{color:inherit;text-decoration:none}
 /* ---------- 共通パーツ ---------- */
 .eyebrow{
   font-family:var(--sans);
-  font-size:.68rem;
+  font-size:.72rem;
   font-weight:300;
-  letter-spacing:.42em;
+  letter-spacing:.38em;
   color:var(--gray);
   text-transform:uppercase;
 }
 .heading{
-  font-size:clamp(1.6rem,3.2vw,2.6rem);
+  font-size:clamp(1.6rem,3vw,2.5rem);
   font-weight:500;
-  line-height:1.85;
+  line-height:1.75;
   letter-spacing:.1em;
-  margin-top:1.6rem;
+  margin-top:1.4rem;
+  word-break:auto-phrase;
 }
 .lead{
-  font-size:clamp(.85rem,1.1vw,.95rem);
-  line-height:2.4;
+  font-size:clamp(.92rem,1.15vw,1.02rem);
+  line-height:2.2;
   color:var(--ink-soft);
-  margin-top:2.4rem;
-  max-width:34em;
+  margin-top:2rem;
+  max-width:36em;
+  word-break:auto-phrase;
 }
 .more{
   display:inline-flex;align-items:center;gap:1.2rem;
   margin-top:3rem;
   font-family:var(--sans);
-  font-size:.7rem;letter-spacing:.35em;font-weight:300;
+  font-size:.74rem;letter-spacing:.32em;font-weight:300;
   color:var(--ink);
   position:relative;
 }
@@ -81,15 +83,16 @@ a{color:inherit;text-decoration:none}
   transform:rotate(32deg);transform-origin:right center;
 }
 .more:hover .arrow{width:80px}
-.section-block{padding:11rem 3.4rem;max-width:1280px;margin:0 auto}
+.section-block{padding:8.5rem 3.4rem;max-width:1280px;margin:0 auto}
 .section-block--narrow{max-width:720px}
-.section-block--dark{background:var(--ink);color:var(--paper);max-width:none;padding:11rem 3.4rem}
+.section-block--dark{background:var(--ink);color:var(--paper);max-width:none;padding:8.5rem 3.4rem}
 .section-block--dark .eyebrow{color:rgba(245,243,238,.5)}
-.section-block--dark .lead{color:rgba(245,243,238,.85)}
-.section-block--beige{background:var(--beige);max-width:none;padding:11rem 3.4rem}
-.section-block--beige .inner{max-width:1280px;margin:0 auto}
+.section-block--dark .lead{color:rgba(245,243,238,.88)}
+.section-block--dark .eyebrow,.works-head .eyebrow{color:rgba(245,243,238,.62)}
+.section-block--beige{background:var(--beige);max-width:none;padding:8.5rem 3.4rem}
+.section-block--beige .inner,.section-block--dark .inner{max-width:calc(1280px - 6.8rem);margin:0 auto}
 .placeholder-note{
-  margin-top:2rem;padding:2.4rem 2rem;
+  margin-top:2rem;padding:1.6rem 2rem;
   border:1px dashed var(--line);
   font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;
   color:var(--gray);line-height:2;
@@ -253,17 +256,16 @@ section:has(> [data-parallax]){overflow:hidden}
 .rv-d1{transition-delay:.15s}.rv-d2{transition-delay:.3s}.rv-d3{transition-delay:.45s}
 
 /* ---------- Concept ---------- */
-.concept{padding:11rem 3.4rem;max-width:1280px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1.1fr;gap:6rem;align-items:center}
+.concept{padding:8.5rem 3.4rem;max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1.05fr 1fr;gap:5rem;align-items:center}
 .concept .frame{aspect-ratio:4/3}
 .concept .frame .scene{position:absolute;inset:0}
 .frame{position:relative;overflow:hidden}
 .frame .scene{height:100%}
 
 /* ---------- Works ---------- */
-.works{background:var(--ink);color:var(--paper);padding:10rem 0 11rem;overflow:hidden}
+.works{background:var(--ink);color:var(--paper);padding:8.5rem 0 9rem;overflow:hidden}
 .works-head{max-width:1280px;margin:0 auto 5rem;padding:0 3.4rem;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:2rem}
-.works-head .eyebrow{color:rgba(245,243,238,.5)}
 .works .more{color:var(--paper)}
 .works .more .arrow{background:var(--paper)}
 .works .more .arrow::after{background:var(--paper)}
@@ -275,8 +277,8 @@ section:has(> [data-parallax]){overflow:hidden}
 .card .frame .scene{position:absolute;inset:0;transition:transform 1.2s cubic-bezier(.19,1,.22,1)}
 .card:hover .frame .scene{transform:scale(1.05)}
 .work-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.card figcaption{margin-top:1.3rem;font-family:var(--sans);font-weight:300;font-size:.68rem;letter-spacing:.28em;line-height:2;color:rgba(245,243,238,.85)}
-.card figcaption span{display:block;font-size:.6rem;color:rgba(245,243,238,.45)}
+.card figcaption{margin-top:1.3rem;font-family:var(--sans);font-weight:300;font-size:.76rem;letter-spacing:.24em;line-height:2;color:rgba(245,243,238,.92)}
+.card figcaption span{display:block;font-size:.66rem;color:rgba(245,243,238,.6)}
 
 /* ---------- Plans / Features / Process / FAQ grids ---------- */
 .feature-grid,.faq-list,.case-grid{
@@ -285,59 +287,72 @@ section:has(> [data-parallax]){overflow:hidden}
 .feature-grid{grid-template-columns:repeat(3,1fr)}
 .case-grid{grid-template-columns:1fr 1fr}
 .feature-card,.case-card,.faq-item{
-  padding:2rem 0;border-top:1px solid var(--line);
+  padding:2.2rem 0;border-top:1px solid var(--line);
 }
 .section-block--dark .feature-card,
 .section-block--dark .case-card,
 .section-block--dark .faq-item{border-top-color:var(--line-light)}
 .feature-card h3,.case-card h3,.faq-item h3{
-  font-size:.95rem;font-weight:500;letter-spacing:.16em;
+  font-size:1.05rem;font-weight:500;letter-spacing:.12em;line-height:1.8;
 }
 .feature-card p,.case-card p,.faq-item p{
-  margin-top:1rem;font-size:.78rem;line-height:2.2;color:var(--ink-soft);
+  margin-top:.9rem;font-size:.9rem;line-height:2.1;color:var(--ink-soft);word-break:auto-phrase;
 }
 .section-block--dark .feature-card p,
 .section-block--dark .case-card p,
-.section-block--dark .faq-item p{color:rgba(245,243,238,.75)}
+.section-block--dark .faq-item p{color:rgba(245,243,238,.82)}
 .faq-item .no{
   font-family:var(--serif-en);font-style:italic;font-weight:300;
-  font-size:.8rem;color:var(--gray);margin-right:.8rem;
+  font-size:.95rem;color:var(--gray);margin-right:.8rem;
 }
-.section-block--dark .faq-item .no{color:rgba(245,243,238,.45)}
+.section-block--dark .faq-item .no{color:rgba(245,243,238,.6)}
 
-/* ---------- Process:矢印でつなぐフローチャート ---------- */
-.flow{list-style:none;margin-top:5rem;display:grid;grid-template-columns:repeat(8,1fr);column-gap:2.6rem}
-.flow-step{position:relative;padding-top:1.8rem;border-top:1px solid var(--ink)}
-.flow-step::before{ /* 各ステップの起点 */
-  content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:var(--ink)}
-.flow-step:not(:last-child)::after{ /* 次のステップへの矢印 */
-  content:"";position:absolute;top:-6px;right:-2.6rem;width:2.6rem;height:11px;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 11'%3E%3Cpath d='M4 5.5H21M17 1.5l4.5 4-4.5 4' fill='none' stroke='%231b1b19' stroke-width='1'/%3E%3C/svg%3E") center/26px 11px no-repeat}
-.flow-step .no{font-family:var(--serif-en);font-style:italic;font-weight:300;font-size:.85rem;color:var(--gray);letter-spacing:.1em}
-.flow-step h3{word-break:keep-all;margin-top:.4rem;font-size:.92rem;font-weight:500;letter-spacing:.12em;line-height:1.7}
-.flow-step p{margin-top:.9rem;font-size:.72rem;line-height:2;color:var(--ink-soft)}
+/* ---------- Process:番号の丸を矢印でつなぐ縦のフローチャート ---------- */
+.process-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:5rem;align-items:start}
+.process-head{position:sticky;top:calc(var(--header-h,76px) + 3rem)}
+.flow{list-style:none}
+.flow-step{position:relative;display:grid;grid-template-columns:3.4rem 1fr;column-gap:2rem;padding-bottom:2.6rem}
+.flow-step:last-child{padding-bottom:0}
+.flow-step .no{ /* ステップ番号の丸 */
+  position:relative;z-index:1;width:3.4rem;height:3.4rem;border:1px solid var(--ink);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:var(--paper);
+  font-family:var(--serif-en);font-size:1.15rem;letter-spacing:.04em;line-height:1}
+.flow-step:first-child .no,.flow-step:last-child .no{background:var(--ink);color:var(--paper)} /* 始点と終点 */
+.flow-step:not(:last-child)::before{ /* 次の丸へつなぐ線 */
+  content:"";position:absolute;left:1.7rem;top:3.4rem;bottom:0;width:1px;background:var(--ink)}
+.flow-step:not(:last-child)::after{ /* 矢印の先端 */
+  content:"";position:absolute;left:calc(1.7rem - 5px);bottom:1px;width:11px;height:8px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 8'%3E%3Cpath d='M1 1.5l4.5 5 4.5-5' fill='none' stroke='%231b1b19' stroke-width='1.1'/%3E%3C/svg%3E") center/11px 8px no-repeat}
+.flow-body{padding-top:.5rem;padding-bottom:.4rem}
+.flow-step h3{font-size:1.15rem;font-weight:500;letter-spacing:.12em;line-height:1.7}
+.flow-step p{margin-top:.4rem;font-size:.92rem;line-height:2;color:var(--ink-soft);word-break:auto-phrase}
 
 /* ---------- Plans:Appleのモデル比較風 ---------- */
-.cmp{margin-top:5rem}
+.cmp{margin-top:4.5rem}
 .cmp-models,.cmp-row,.cmp-bar{display:grid;grid-template-columns:repeat(3,1fr);column-gap:3rem}
 .cmp-model{text-align:center;display:flex;flex-direction:column;align-items:center}
-.cmp-tag{font-family:var(--sans);font-size:.62rem;font-weight:300;letter-spacing:.35em;color:var(--gray);min-height:1.4em}
-.cmp-name{margin-top:.8rem;font-family:var(--serif-en);font-weight:300;font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:.14em;line-height:1.3}
-.cmp-desc{margin-top:1.4rem;font-size:.8rem;line-height:2.1;color:var(--ink-soft);min-height:4.2em}
-.cmp-price{margin-top:1.6rem;font-family:var(--serif-en);font-size:1.4rem;letter-spacing:.06em}
-.cmp-price small{font-family:var(--mincho);font-size:.68rem;letter-spacing:.08em;color:var(--gray);margin-left:.3rem}
-.cmp-model .more{margin-top:1.8rem}
+.cmp-tag{min-height:1.9rem}
+.cmp-tag span{display:inline-block;padding:.3rem .9rem;background:var(--ink);color:var(--paper);
+  font-family:var(--sans);font-size:.66rem;font-weight:300;letter-spacing:.3em}
+.cmp-name{margin-top:.9rem;font-family:var(--serif-en);font-weight:400;font-size:clamp(1.9rem,3vw,2.7rem);letter-spacing:.12em;line-height:1.3}
+.cmp-desc{margin-top:1.2rem;font-size:.92rem;line-height:2;color:var(--ink-soft);min-height:4em;word-break:auto-phrase}
+.cmp-price{margin:1.4rem 0 1.8rem;font-family:var(--serif-en);font-size:1.75rem;letter-spacing:.04em;line-height:1.4}
+.cmp-price small{font-family:var(--mincho);font-size:.78rem;letter-spacing:.06em;color:var(--gray);margin-left:.3rem}
+.cmp-btn{margin-top:auto;display:inline-block;padding:.95rem 1.8rem;border:1px solid var(--ink);
+  font-size:.82rem;letter-spacing:.14em;transition:background .35s ease,color .35s ease}
+.cmp-btn:hover{background:var(--ink);color:var(--paper)}
 .cmp-bar{ /* スクロール中も列の見出しを固定 */
-  position:sticky;top:var(--header-h,76px);z-index:5;margin-top:5rem;padding:1.1rem 0;
-  background:rgba(234,229,219,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line)}
-.cmp-bar span{text-align:center;font-family:var(--serif-en);font-size:1rem;letter-spacing:.24em}
+  position:sticky;top:var(--header-h,76px);z-index:5;margin-top:4.5rem;padding:1.1rem 0;
+  background:rgba(234,229,219,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--ink)}
+.cmp-bar span{text-align:center;font-family:var(--serif-en);font-size:1.1rem;letter-spacing:.2em}
 .cmp-group{margin-top:3.5rem}
-.cmp-group-title{font-size:1.15rem;font-weight:500;letter-spacing:.16em;padding-bottom:1rem;border-bottom:1px solid var(--ink)}
-.cmp-row{padding:2rem 0;border-bottom:1px solid var(--line)}
+.cmp-group-title{font-size:1.25rem;font-weight:500;letter-spacing:.14em;padding-bottom:1rem;border-bottom:1px solid var(--ink)}
+.cmp-row{padding:1.7rem 0;border-bottom:1px solid var(--line)}
 .cmp-cell{text-align:center;display:flex;flex-direction:column;align-items:center}
-.cmp-cell .v{font-size:.95rem;letter-spacing:.08em;line-height:1.8}
-.cmp-cell .k{margin-top:.35rem;font-family:var(--sans);font-size:.6rem;font-weight:300;letter-spacing:.2em;color:var(--gray)}
+.cmp-cell .v{word-break:auto-phrase;font-size:1.02rem;letter-spacing:.06em;line-height:1.7;min-height:1.7em;display:flex;align-items:center}
+.cmp-cell .ic{width:1.3rem;height:1.3rem}
+.cmp-cell .k{margin-top:.35rem;font-size:.78rem;letter-spacing:.08em;color:var(--gray)}
 .cmp-cell.na .v{color:var(--gray)}
 .cmp + .placeholder-note{margin-top:4rem}
 
@@ -345,8 +360,8 @@ section:has(> [data-parallax]){overflow:hidden}
 .message{position:relative;color:#fff}
 .message .scene{position:absolute;inset:0}
 .message .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,18,22,.72) 0%,rgba(10,18,22,.35) 60%,rgba(10,18,22,.15) 100%)}
-.message-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:11rem 3.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:end}
-.message .eyebrow{color:rgba(255,255,255,.55)}
+.message-inner{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:9rem 3.4rem;display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:end}
+.message .eyebrow{color:rgba(255,255,255,.7)}
 .message .lead{color:rgba(255,255,255,.9)}
 .message .more{color:#fff}
 .message .more .arrow{background:#fff}
@@ -367,15 +382,15 @@ section:has(> [data-parallax]){overflow:hidden}
   padding:4rem;color:#fff;
 }
 .cta .visual h2{font-size:clamp(1.4rem,2.4vw,2rem);font-weight:500;line-height:2;letter-spacing:.14em;text-shadow:0 2px 24px rgba(0,10,16,.4)}
-.cta .visual p{margin-top:2rem;font-size:.85rem;line-height:2.4;color:rgba(255,255,255,.92)}
+.cta .visual p{margin-top:2rem;font-size:.92rem;line-height:2.4;color:rgba(255,255,255,.92)}
 .cta .panel{background:var(--beige);display:flex;flex-direction:column;justify-content:center;padding:5rem 4.5rem}
 .cta .panel h2{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:500;letter-spacing:.14em;margin-top:1.6rem}
-.cta .panel p{margin-top:2rem;font-size:.82rem;line-height:2.4;color:var(--ink-soft)}
+.cta .panel p{margin-top:2rem;font-size:.92rem;line-height:2.4;color:var(--ink-soft)}
 .btn{
   margin-top:3rem;display:inline-flex;justify-content:space-between;align-items:center;
   background:var(--ink);color:var(--paper);
   padding:1.4rem 2.2rem;max-width:320px;
-  font-family:var(--sans);font-size:.7rem;letter-spacing:.35em;font-weight:300;
+  font-family:var(--sans);font-size:.76rem;letter-spacing:.32em;font-weight:300;
   transition:opacity .4s ease;
 }
 .btn:hover{opacity:.82}
@@ -388,29 +403,17 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 .foot-logo .ja{font-size:2rem;font-weight:500;letter-spacing:.3em}
 .foot-logo .en{font-family:var(--sans);font-size:.55rem;letter-spacing:.55em;margin-top:.6rem;font-weight:300;color:rgba(245,243,238,.6)}
 .foot-nav{list-style:none;display:flex;flex-direction:column;gap:1rem;border-left:1px solid var(--line-light);padding-left:3rem}
-.foot-nav a{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
+.foot-nav a{font-family:var(--sans);font-size:.74rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
 .foot-nav a:hover{color:#fff}
-.foot-social{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
-.foot-social a{font-family:var(--sans);font-size:.66rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
+.foot-social{display:flex;flex-direction:column;gap:1rem}
+.foot-social a{font-family:var(--sans);font-size:.74rem;letter-spacing:.3em;font-weight:300;color:rgba(245,243,238,.85)}
 .foot-social a:hover{color:#fff}
-.foot-info{font-size:.75rem;line-height:2.4;color:rgba(245,243,238,.75);font-family:var(--sans);font-weight:300;letter-spacing:.1em}
+.foot-info{font-size:.82rem;line-height:2.4;color:rgba(245,243,238,.75);font-family:var(--sans);font-weight:300;letter-spacing:.1em}
 .foot-info strong{font-family:var(--mincho);font-weight:500;font-size:.85rem;letter-spacing:.2em;color:var(--paper)}
 .copyright{max-width:1280px;margin:5rem auto 0;padding-top:2rem;border-top:1px solid var(--line-light);
   font-family:var(--serif-en);font-size:.7rem;letter-spacing:.18em;color:rgba(245,243,238,.45);text-align:center}
 
 /* ---------- Responsive ---------- */
-@media (max-width:1100px){
-  /* フローチャートは縦向きに */
-  .flow{grid-template-columns:1fr;max-width:640px;margin-top:4rem}
-  .flow-step{border-top:none;border-left:1px solid var(--ink);padding:0 0 3.2rem 2.2rem}
-  .flow-step::before{left:-4px;top:.55rem}
-  .flow-step:not(:last-child)::after{
-    top:auto;bottom:1rem;right:auto;left:-6px;width:11px;height:14px;
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 11 14'%3E%3Cpath d='M1.5 8.5l4 4.5 4-4.5' fill='none' stroke='%231b1b19' stroke-width='1'/%3E%3C/svg%3E") center/11px 14px no-repeat}
-  .flow-step:last-child{border-left-color:transparent;padding-bottom:0}
-  .flow-step h3{margin-top:.1rem;font-size:1rem}
-  .flow-step p{font-size:.8rem;margin-top:.5rem}
-}
 @media (max-width:900px){
   header{
     padding:max(1.4rem,env(safe-area-inset-top)) max(1.6rem,env(safe-area-inset-right)) 1.4rem max(1.6rem,env(safe-area-inset-left));
@@ -469,14 +472,23 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
   .hero-inner,.section-block,.section-block--dark,.section-block--beige{padding-left:1.6rem;padding-right:1.6rem}
   .hero h1{font-size:min(7vw,2.2rem);letter-spacing:.1em}
   .hero h1 .line{white-space:nowrap}
-  .section-block,.section-block--dark,.section-block--beige{padding-top:7rem;padding-bottom:7rem}
+  .section-block,.section-block--dark,.section-block--beige{padding-top:5.5rem;padding-bottom:5.5rem}
   .scroll-cue{left:1.6rem}
-  .concept{grid-template-columns:1fr;padding:7rem 1.6rem;gap:4rem}
+  .concept{grid-template-columns:1fr;padding:5.5rem 1.6rem;gap:3rem}
+  .process-layout{grid-template-columns:1fr;gap:3.5rem}
+  .process-head{position:static}
+  .flow-step{grid-template-columns:2.8rem 1fr;column-gap:1.4rem;padding-bottom:2.2rem}
+  .flow-step .no{width:2.8rem;height:2.8rem;font-size:1rem}
+  .flow-step:not(:last-child)::before{left:1.4rem;top:2.8rem}
+  .flow-step:not(:last-child)::after{left:calc(1.4rem - 5px)}
+  .flow-body{padding-top:.3rem}
+  .flow-step h3{font-size:1.05rem}
+  .flow-step p{font-size:.88rem}
   .feature-grid{grid-template-columns:1fr 1fr;gap:3rem 1.6rem}
   .case-grid{grid-template-columns:1fr}
-  .works{padding:7rem 0 8rem}
+  .works{padding:5.5rem 0 6rem}
   .works-head{padding:0 1.6rem;margin-bottom:3.5rem}
-  .message-inner{grid-template-columns:1fr;padding:7rem 1.6rem;gap:3rem}
+  .message-inner{grid-template-columns:1fr;padding:6rem 1.6rem;gap:3rem}
   .message .quote{text-align:left}
   .cta{grid-template-columns:1fr}
   .cta .visual{min-height:60vh}
@@ -486,18 +498,18 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
   footer{padding:4.5rem 1.6rem 2.5rem}
 }
 @media (max-width:600px){
-  .feature-grid{grid-template-columns:1fr}
-  .cmp-models,.cmp-row,.cmp-bar{column-gap:.8rem}
-  .cmp-name{font-size:1.25rem;letter-spacing:.08em}
-  .cmp-desc{font-size:.68rem;line-height:1.9}
-  .cmp-desc br{display:none}
-  .cmp-price{font-size:1rem}
-  .cmp-price small{display:block;margin:0;font-size:.58rem}
-  .cmp-bar span{font-size:.72rem;letter-spacing:.12em}
-  .cmp-cell .v{font-size:.78rem;letter-spacing:.04em;line-height:1.7}
-  .cmp-cell .k{font-size:.52rem;letter-spacing:.1em}
-  .cmp-model .more{gap:.6rem;font-size:.6rem;letter-spacing:.2em}
-  .cmp-model .more .arrow{width:28px}
+  .feature-grid{grid-template-columns:1fr;gap:0}
+  .cmp-models,.cmp-row,.cmp-bar{column-gap:.7rem}
+  .cmp-tag span{padding:.25rem .5rem;font-size:.56rem;letter-spacing:.14em}
+  .cmp-name{font-size:1.15rem;letter-spacing:.04em}
+  .cmp-desc{display:none} /* 狭い画面では料金と比較表に絞る */
+  .pc-only{display:none}
+  .cmp-price{font-size:1.15rem;margin:.8rem 0 1.2rem}
+  .cmp-price small{display:block;margin:0;font-size:.62rem}
+  .cmp-btn{padding:.75rem .4rem;font-size:.74rem;letter-spacing:.1em;width:100%}
+  .cmp-bar span{font-size:.8rem;letter-spacing:.1em}
+  .cmp-cell .v{font-size:.86rem;letter-spacing:.02em;line-height:1.6}
+  .cmp-cell .k{font-size:.64rem;letter-spacing:.02em}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -615,19 +627,23 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 
 <!-- ================= PROCESS(制作の流れ) ================= -->
 <section class="section-block" id="process">
-  <p class="eyebrow rv">Process</p>
-  <h2 class="heading rv rv-d1">制作の流れ</h2>
-  <p class="lead rv rv-d2">ご相談から納品まで、8つのステップで伴走します。</p>
-  <ol class="flow" aria-label="制作の流れ">
-    <li class="flow-step rv"><span class="no">01</span><h3>お問い合わせ</h3><p>メール・お電話で、お気軽にご連絡ください。</p></li>
-    <li class="flow-step rv rv-d1"><span class="no">02</span><h3>ヒアリング</h3><p>目的・ターゲット・ご予算を伺い、映像の役割を定めます。</p></li>
-    <li class="flow-step rv rv-d2"><span class="no">03</span><h3>お見積り</h3><p>内容に合わせて、お見積りをご提示します。</p></li>
-    <li class="flow-step rv rv-d3"><span class="no">04</span><h3>企画・<wbr>撮影準備</h3><p>構成・ロケハン・スケジュールを固めます。</p></li>
-    <li class="flow-step rv"><span class="no">05</span><h3>撮影</h3><p>空撮・地上・室内を組み合わせて撮影します。</p></li>
-    <li class="flow-step rv rv-d1"><span class="no">06</span><h3>編集</h3><p>世界観と目的に沿って仕上げます。</p></li>
-    <li class="flow-step rv rv-d2"><span class="no">07</span><h3>ご確認</h3><p>初稿をご確認いただき、修正を反映します。</p></li>
-    <li class="flow-step rv rv-d3"><span class="no">08</span><h3>納品</h3><p>用途に合わせた形式でお渡しします。</p></li>
-  </ol>
+  <div class="process-layout">
+    <div class="process-head">
+      <p class="eyebrow rv">Process</p>
+      <h2 class="heading rv rv-d1">制作の流れ</h2>
+      <p class="lead rv rv-d2">ご相談から納品まで、8つのステップで伴走します。</p>
+    </div>
+    <ol class="flow" aria-label="制作の流れ">
+      <li class="flow-step rv"><span class="no">01</span><div class="flow-body"><h3>お問い合わせ</h3><p>メール・お電話で、お気軽にご連絡ください。</p></div></li>
+      <li class="flow-step rv"><span class="no">02</span><div class="flow-body"><h3>ヒアリング</h3><p>目的・ターゲット・ご予算を伺い、映像の役割を定めます。</p></div></li>
+      <li class="flow-step rv"><span class="no">03</span><div class="flow-body"><h3>お見積り</h3><p>内容に合わせて、お見積りをご提示します。</p></div></li>
+      <li class="flow-step rv"><span class="no">04</span><div class="flow-body"><h3>企画・撮影準備</h3><p>構成・ロケハン・スケジュールを固めます。</p></div></li>
+      <li class="flow-step rv"><span class="no">05</span><div class="flow-body"><h3>撮影</h3><p>空撮・地上・室内を組み合わせて撮影します。</p></div></li>
+      <li class="flow-step rv"><span class="no">06</span><div class="flow-body"><h3>編集</h3><p>世界観と目的に沿って仕上げます。</p></div></li>
+      <li class="flow-step rv"><span class="no">07</span><div class="flow-body"><h3>ご確認</h3><p>初稿をご確認いただき、修正を反映します。</p></div></li>
+      <li class="flow-step rv"><span class="no">08</span><div class="flow-body"><h3>納品</h3><p>用途に合わせた形式でお渡しします。</p></div></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ================= PLANS(モデル比較) ================= -->
@@ -643,37 +659,37 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
         <h3 class="cmp-name">LIGHT</h3>
         <p class="cmp-desc">SNS向けショート動画など、<br>まずは試してみたい方に。</p>
         <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
-        <a class="more" href="#final-cta"><span>相談する</span><span class="arrow"></span></a>
+        <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       <div class="cmp-model rv rv-d1">
-        <p class="cmp-tag">おすすめ</p>
+        <p class="cmp-tag"><span>おすすめ</span></p>
         <h3 class="cmp-name">STANDARD</h3>
         <p class="cmp-desc">施設PRムービーの定番。<br>企画から撮影・編集まで。</p>
         <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
-        <a class="more" href="#final-cta"><span>相談する</span><span class="arrow"></span></a>
+        <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       <div class="cmp-model rv rv-d2">
         <p class="cmp-tag">&nbsp;</p>
         <h3 class="cmp-name">PREMIUM</h3>
         <p class="cmp-desc">ブランドムービーや複数媒体展開。<br>世界観ごと設計します。</p>
         <p class="cmp-price">¥000,000<small>〜(税別)</small></p>
-        <a class="more" href="#final-cta"><span>相談する</span><span class="arrow"></span></a>
+        <a class="cmp-btn" href="#final-cta"><span class="pc-only">このプランで</span>相談する</a>
       </div>
       </div>
       <div class="cmp-bar" aria-hidden="true"><span>LIGHT</span><span>STANDARD</span><span>PREMIUM</span></div>
       <div class="cmp-group rv">
         <h4 class="cmp-group-title">撮影</h4>
         <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">半日</span><span class="k">撮影日数</span></div><div class="cmp-cell"><span class="v">1日</span><span class="k">撮影日数</span></div><div class="cmp-cell"><span class="v">2日〜</span><span class="k">撮影日数</span></div></div>
-        <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">◯</span><span class="k">ドローン空撮</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">ドローン空撮</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">ドローン空撮</span></div></div>
-        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v">—</span><span class="k">地上・室内撮影</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">地上・室内撮影</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">地上・室内撮影</span></div></div>
-        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v">—</span><span class="k">写真撮影</span></div><div class="cmp-cell"><span class="v">オプション</span><span class="k">写真撮影</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">写真撮影</span></div></div>
+        <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">ドローン空撮</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">ドローン空撮</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">ドローン空撮</span></div></div>
+        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v" aria-label="なし">—</span><span class="k">地上・室内撮影</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">地上・室内撮影</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">地上・室内撮影</span></div></div>
+        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v" aria-label="なし">—</span><span class="k">写真撮影</span></div><div class="cmp-cell"><span class="v">オプション</span><span class="k">写真撮影</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">写真撮影</span></div></div>
       </div>
       <div class="cmp-group rv">
         <h4 class="cmp-group-title">企画・編集</h4>
         <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">簡易構成</span><span class="k">企画・構成</span></div><div class="cmp-cell"><span class="v">企画書あり</span><span class="k">企画・構成</span></div><div class="cmp-cell"><span class="v">世界観設計から</span><span class="k">企画・構成</span></div></div>
         <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">〜30秒</span><span class="k">完成尺の目安</span></div><div class="cmp-cell"><span class="v">60〜90秒</span><span class="k">完成尺の目安</span></div><div class="cmp-cell"><span class="v">〜3分</span><span class="k">完成尺の目安</span></div></div>
-        <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">◯</span><span class="k">BGM・テロップ</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">BGM・テロップ</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">BGM・テロップ</span></div></div>
-        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v">—</span><span class="k">ナレーション</span></div><div class="cmp-cell"><span class="v">オプション</span><span class="k">ナレーション</span></div><div class="cmp-cell"><span class="v">◯</span><span class="k">ナレーション</span></div></div>
+        <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">BGM・テロップ</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">BGM・テロップ</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">BGM・テロップ</span></div></div>
+        <div class="cmp-row" role="row"><div class="cmp-cell na"><span class="v" aria-label="なし">—</span><span class="k">ナレーション</span></div><div class="cmp-cell"><span class="v">オプション</span><span class="k">ナレーション</span></div><div class="cmp-cell"><span class="v"><svg class="ic" viewBox="0 0 20 20" role="img" aria-label="あり"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span><span class="k">ナレーション</span></div></div>
         <div class="cmp-row" role="row"><div class="cmp-cell"><span class="v">1回</span><span class="k">修正回数</span></div><div class="cmp-cell"><span class="v">2回</span><span class="k">修正回数</span></div><div class="cmp-cell"><span class="v">3回</span><span class="k">修正回数</span></div></div>
       </div>
       <div class="cmp-group rv">
@@ -746,7 +762,7 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
 
 <!-- ================= CASE STUDY ================= -->
 <section class="section-block section-block--dark" id="case-study">
-  <div style="max-width:1280px;margin:0 auto">
+  <div class="inner">
     <p class="eyebrow rv">Case Study</p>
     <h2 class="heading rv rv-d1">導入事例</h2>
     <p class="lead rv rv-d2">課題から成果までのストーリーを、事例として紹介します。</p>
@@ -816,29 +832,17 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
     <div class="scene sc-dusk"><div class="layer"></div><div class="light"></div></div>
     <div class="veil"></div>
     <div class="copy">
-      <p class="eyebrow rv" style="color:rgba(255,255,255,.6)">Final CTA</p>
+      <p class="eyebrow rv" style="color:rgba(255,255,255,.75)">Partnership</p>
       <h2 class="rv rv-d1">困ったときに、<br>まず相談したくなる存在へ。</h2>
       <p class="rv rv-d2">お客様の広報支援部として、<br>一緒に魅力を伝え、成果をつくります。</p>
     </div>
   </div>
   <div class="panel">
-    <p class="eyebrow rv">Next Step</p>
+    <p class="eyebrow rv">Contact</p>
     <h2 class="rv rv-d1">お問い合わせのご案内</h2>
     <p class="rv rv-d2">映像制作のご相談やお見積もりなど、<br>お気軽にお問い合わせください。</p>
     <a class="btn rv rv-d3" href="mailto:info@yuei.jp"><span>CONTACT US</span><span class="arrow"></span></a>
   </div>
-</section>
-
-<!-- ================= COMPANY (フッター導線用) ================= -->
-<section class="section-block section-block--narrow" id="company">
-  <p class="eyebrow rv">Company</p>
-  <h2 class="heading rv rv-d1">会社概要</h2>
-  <p class="lead rv rv-d2">
-    株式会社 結映（ユウエイ）<br>
-    拠点：関東<br>
-    事業：ドローン映像制作 / 映像・写真制作 / SNS支援
-  </p>
-  <p class="placeholder-note rv rv-d3">※ 設立年月日・代表者名・登記住所など正式情報は追記予定</p>
 </section>
 
 </main>
@@ -850,7 +854,6 @@ footer{background:var(--ink);color:var(--paper);padding:6rem 3.4rem 3rem}
       <span class="en">YUEI</span>
     </a>
     <ul class="foot-nav">
-      <li><a href="#company">COMPANY</a></li>
       <li class="foot-social">
         <a href="#" aria-label="Instagram（準備中）">Instagram</a>
         <a href="#" aria-label="YouTube（準備中）">YouTube</a>
