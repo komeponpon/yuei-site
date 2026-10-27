@@ -145,6 +145,8 @@ header.solid{background:rgba(245,243,238,.92);backdrop-filter:blur(8px);padding:
 .logo{position:relative;display:block;height:70px;aspect-ratio:591/503;transition:height .6s ease}
 .logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:opacity .6s ease}
 .logo .logo-gold{opacity:0}
+/* 白ロゴは金ロゴを白く塗り替えて表示(書体・形を完全に一致させるため) */
+.logo .logo-white,.foot-logo img{filter:brightness(0) invert(1)}
 header.solid .logo{height:52px}
 header.solid .logo .logo-white,body.nav-open .logo .logo-white{opacity:0}
 header.solid .logo .logo-gold,body.nav-open .logo .logo-gold{opacity:1}
